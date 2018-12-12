@@ -21,7 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/about', 'AboutController@index')->name('about');
 
 //Employee
-Route::get('/employee', 'EmployeeController@index')->name('employee');
+Route::any('/employee', 'EmployeeController@index')->name('employee');
+Route::post('/employee/add', 'EmployeeController@createEmployee')->name('employee.create');
+Route::get('/employee/all', 'EmployeeController@getAllEmployee');
 
 //Client
 Route::any('/client', 'ClientController@index')->name('client');

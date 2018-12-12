@@ -57,9 +57,6 @@
                         <a class="nav-link" href="/client">Client</a>
                         </li>
                         <li class="nav-item active">
-                        <a class="nav-link" href="#">Account</a>
-                        </li>
-                        <li class="nav-item active">
                         <a class="nav-link" href="/about">About</a>
                         </li>
                     </ul>
