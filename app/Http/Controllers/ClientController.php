@@ -60,6 +60,11 @@ class ClientController extends Controller
 		$newclient = Client::create($request->all());
 		if($newclient){
 			return json_encode(array('result' => 'success', 'message' => 'Successfully Added!'));
-		}
+		} else {
+            return json_encode([
+                'result' => 'failed',
+                'message' => 'Not success'
+            ]);
+        }
 	}
 }

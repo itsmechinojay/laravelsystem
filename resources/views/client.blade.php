@@ -81,10 +81,10 @@
 <!-- Modal -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form id="form-add-client">
+        <form id="form-add-client" method="POST">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addModalLabel">Add Client</h5>
+                    <h5 class="modal-title" id="addModalLabel">Add Client Test</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -169,15 +169,17 @@
     </div>
 </div>
 
-<script language="JavaScript" type="text/javascript">
+<script>
+$(document).ready(function(){
     $('#form-add-client').submit(function(e){
+        e.preventDefault();
 		$.ajax({
 	        url: "/client/add",
-	        type: "POST",
-	        data: new FormData(this),
-	        contentType: false,
-	        processData: false,
-	        cache: false,
+            type: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
 	        beforeSend: function(){ 
 	          $('#btn-add-client').prop('disabled', true);
 	        },
@@ -186,22 +188,20 @@
 	        },
 	        success: function(data){
 	          var msg = JSON.parse(data);
+              console.log(msg);
 	          if(msg.result == 'success'){
-	            swal({
-	              title: 'Great!',
-	              text: msg.message,
-	              icon: 'success'
-	            })
+                alert('success');
 	            $("#form-add-client")[0].reset();
 	            $('#btn-add-client').prop('disabled', false);
-	            location.reload();
+	            
 	          } else{
 	            printErrorMsg(msg.error);
 	            $('#btn-add-client').prop('disabled', false);
 	          }
 	        }
 	      });
-		e.preventDefault();
+		
 	});
+});
 </script>
 @endsection

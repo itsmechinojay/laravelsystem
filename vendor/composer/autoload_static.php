@@ -420,7 +420,6 @@ class ComposerStaticInit21e5ca7ef7cbae8cc7f5316b912f0fc4
     );
 
     public static $classMap = array (
-        'App\\Client' => __DIR__ . '/../..' . '/app/Model/Client.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AboutController' => __DIR__ . '/../..' . '/app/Http/Controllers/AboutController.php',
@@ -435,6 +434,7 @@ class ComposerStaticInit21e5ca7ef7cbae8cc7f5316b912f0fc4
         'App\\Http\\Controllers\\Client_UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client_UserController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\EmployeeController' => __DIR__ . '/../..' . '/app/Http/Controllers/EmployeeController.php',
+        'App\\Http\\Controllers\\Employee_UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Employee_UserController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
@@ -444,6 +444,8 @@ class ComposerStaticInit21e5ca7ef7cbae8cc7f5316b912f0fc4
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Model\\Client' => __DIR__ . '/../..' . '/app/Model/Client.php',
+        'App\\Http\\Model\\Client_Request' => __DIR__ . '/../..' . '/app/Model/Client_Request.php',
         'App\\Http\\Model\\Employee' => __DIR__ . '/../..' . '/app/Model/Employee.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
