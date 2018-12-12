@@ -87,7 +87,7 @@
         <form id="form-add-client" method="POST">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addModalLabel">Add Client Test</h5>
+                    <h5 class="modal-title" id="addModalLabel">Add Client</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
