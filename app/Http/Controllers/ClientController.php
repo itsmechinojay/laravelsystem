@@ -33,6 +33,14 @@ class ClientController extends Controller
         
         return view('client',compact('clients'));
     }
+
+    public function getAllClient(){
+        $clientlist = Client::all();
+        return json_encode([
+            'result' => 'success',
+            'client' => $clientlist
+        ]);
+    }
     
     public function getClient(Client $employee){
 		return json_encode([
@@ -59,7 +67,10 @@ class ClientController extends Controller
 		}
 		$newclient = Client::create($request->all());
 		if($newclient){
-			return json_encode(array('result' => 'success', 'message' => 'Successfully Added!'));
+			return json_encode([
+                'result' => 'success', 
+                'message' => 'Successfully Added!'
+            ]);
 		} else {
             return json_encode([
                 'result' => 'failed',

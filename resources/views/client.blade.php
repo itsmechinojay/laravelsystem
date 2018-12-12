@@ -31,18 +31,22 @@
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
                             ADD
                         </button>
-                        <input class="rounded" type="text" placeholder="Search" style="margin-left:70%">
                         <div class="dropdown-divider"></div>
                         <div class="row">
-                            <table id="employeelist" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="width:100%">
+                        <table id="clientlist" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
+                                        <th>#</th>
                                         <th>Client Name</th>
                                         <th>Email</th>
-                                        <th>Contact</th>                                               
+                                        <th>Address</th>
+                                        <th>City</th>
+                                        <th>Contact</th>
+                                        <th>Created at</th>
+                                        <th>Updated at</th>                                          
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <!-- <tbody>
                                     @foreach ($clients as $client)
                                     <tr>
                                         <td>{{$client->clientname}}</td>
@@ -50,14 +54,13 @@
                                         <td>{{$client->contact}}</td>                                            
                                     </tr>               
                                     @endforeach
-                                </tbody>
+                                </tbody> -->
                             </table>
                         </div>
                     </div>
                 </div>
 
                 <div class="tab-pane fade" id="request">
-                        <input class="rounded" type="text" placeholder="Search" style="margin-left:75%">
                         <div class="dropdown-divider"></div>
                         <table id="employeelist" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="width:100%">
                             <thead>
@@ -171,6 +174,47 @@
 
 <script>
 $(document).ready(function(){
+    getAllClient();
+    function getAllClient(){
+        $.ajax({
+            url: '/client/all',
+            type: "GET",
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                $('#clientlist').DataTable().destroy(); 
+            },
+            success: function(data) {
+                var msg = JSON.parse(data);
+                if(msg.result == 'success'){
+                    console.log(msg.client);
+                    $('#clientlist').DataTable({
+                        processing: true,
+                        data: msg.client,
+                        responsive: true,
+                        columns: [
+                            { data: 'id'},
+                            { data: 'clientname'},
+                            { data: 'email'},
+                            { data: 'address'},
+                            { data: 'city'},
+                            { data: 'contact'},
+                            { data: 'created_at'},
+                            { data: 'updated_at'}
+                        ]
+                    });
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) { // if error occured
+                console.log("Error: " + thrownError);
+            },
+            complete: function() {
+            },
+        });
+    }
+    
+
     $('#form-add-client').submit(function(e){
         e.preventDefault();
 		$.ajax({
@@ -193,7 +237,7 @@ $(document).ready(function(){
                 alert('success');
 	            $("#form-add-client")[0].reset();
 	            $('#btn-add-client').prop('disabled', false);
-	            
+	            getAllClient();
 	          } else{
 	            printErrorMsg(msg.error);
 	            $('#btn-add-client').prop('disabled', false);
