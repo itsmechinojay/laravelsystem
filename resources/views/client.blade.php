@@ -63,7 +63,7 @@
 
                 <div class="tab-pane fade" id="request">
                         <div class="dropdown-divider"></div>
-                        <table id="employeelist" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="width:100%">
+                        <table id="clientemployee" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>Client Name</th>

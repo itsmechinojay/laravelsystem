@@ -54,7 +54,7 @@
                 <div class="tab-pane fade" id="deployed">
                         <input class="rounded" type="text" placeholder="Search" style="margin-left:75%">
                         <div class="dropdown-divider"></div>
-                        <table id="employeelist" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="width:100%">
+                        <table id="employeelist" class="table table-striped table-bordered" cellspacing="0" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>Last Name</th>
@@ -157,7 +157,7 @@
                         <div class="form-group col">
                             <label for="bday" class="col col-form-label text-md-left">{{ __('Birth Date') }}</label>
                             <div class="col">
-                                <input id="bdaye" type="date" class="form-control{{ $errors->has('bday') ? ' is-invalid' : '' }}" name="bday" value="{{ old('bday') }}" required autofocus>
+                                <input id="bday" type="date" class="form-control{{ $errors->has('bday') ? ' is-invalid' : '' }}" name="bday" value="{{ old('bday') }}" required autofocus>
     
                                 @if ($errors->has('bday'))
                                     <span class="invalid-feedback" role="alert">
@@ -225,7 +225,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <button id="btn-add-employee" type="submit" class="btn btn-primary">Save</button>
                 </div>
             </div>
         </form>
@@ -249,10 +250,10 @@
                 success: function(data) {
                     var msg = JSON.parse(data);
                     if(msg.result == 'success'){
-                        console.log(msg.client);
+                        console.log(msg.employee);
                         $('#employeelist').DataTable({
                             processing: true,
-                            data: msg.client,
+                            data: msg.employee,
                             responsive: true,
                             columns: [
                                 { data: 'lastname'},
@@ -282,36 +283,35 @@
         }
         
     
-        $('#form-add-client').submit(function(e){
-            e.preventDefault();
-            $.ajax({
-                url: "/employee/add",
-                type: "POST",
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                beforeSend: function(){ 
-                  $('#btn-add-employee').prop('disabled', true);
-                },
-                error: function(data){
-                  $('#btn-add-employee').prop('disabled', false);
-                },
-                success: function(data){
-                  var msg = JSON.parse(data);
-                  console.log(msg);
-                  if(msg.result == 'success'){
-                    alert('success');
-                    $("#form-add-employee")[0].reset();
-                    $('#btn-add-employee').prop('disabled', false);
-                    getAllEmployee();
-                  } else{
-                    printErrorMsg(msg.error);
-                    $('#btn-add-employee').prop('disabled', false);
-                  }
+    $('#form-add-employee').submit(function(e){
+        e.preventDefault();
+        $.ajax({
+            url: "/employee/add",
+            type: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function(){ 
+                $('#btn-add-employee').prop('disabled', true);
+            },
+            error: function(data){
+                $('#btn-add-employee').prop('disabled', false);
+            },
+            success: function(data){
+                var msg = JSON.parse(data);
+                console.log(msg);
+                if(msg.result == 'success'){
+                alert('success');
+                $("#form-add-employee")[0].reset();
+                $('#btn-add-employee').prop('disabled', false);
+                getAllEmployee();
+                } else{
+                printErrorMsg(msg.error);
+                $('#btn-add-employee').prop('disabled', false);
                 }
-              });
-            
+            }
+            });
         });
     });
     </script>

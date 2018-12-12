@@ -35,10 +35,10 @@ class EmployeeController extends Controller
     }
     
     public function getAllEmployee(Employee $employee){
-        $employeetlist = Employee::all();
+        $employeelist = Employee::all();
 		return json_encode([
 			'result' => 'success',
-			'employee' => $employee
+			'employee' => $employeelist
 		]);
     }
     
@@ -61,8 +61,8 @@ class EmployeeController extends Controller
             'address'=> 'required',
             'city'=> 'required',
             'contact'=> 'required',
-            'client',
-            'status'
+            //'client',
+            //'status'
         ]);
 		if ($validation->fails())
         {
