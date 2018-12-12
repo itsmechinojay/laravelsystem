@@ -43,7 +43,8 @@
                                         <th>City</th>
                                         <th>Contact</th>
                                         <th>Created at</th>
-                                        <th>Updated at</th>                                          
+                                        <th>Updated at</th>   
+                                        <th>Action</th>                                       
                                     </tr>
                                 </thead>
                                 <!-- <tbody>
@@ -201,7 +202,13 @@ $(document).ready(function(){
                             { data: 'city'},
                             { data: 'contact'},
                             { data: 'created_at'},
-                            { data: 'updated_at'}
+                            { data: 'updated_at'},
+                            {
+                                'render' : function (data, type, full, meta){             
+                                    data = '<button id="btn-client-delete" type="button" class="btn btn-danger btn-sm">Delete</button>'
+                                    return data;
+                                }
+                            }
                         ]
                     });
                 }
