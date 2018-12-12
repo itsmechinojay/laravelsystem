@@ -47,6 +47,15 @@
                                         <th>Action</th>                                       
                                     </tr>
                                 </thead>
+                                <!-- <tbody>
+                                    @foreach ($clients as $client)
+                                    <tr>
+                                        <td>{{$client->clientname}}</td>
+                                        <td>{{$client->email}}</td>
+                                        <td>{{$client->contact}}</td>                                            
+                                    </tr>               
+                                    @endforeach
+                                </tbody> -->
                             </table>
                         </div>
                     </div>
@@ -54,7 +63,7 @@
 
                 <div class="tab-pane fade" id="request">
                         <div class="dropdown-divider"></div>
-                        <table id="clientlist" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="width:100%">
+                        <table id="employeelist" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>Client Name</th>
@@ -213,35 +222,36 @@ $(document).ready(function(){
     }
     
 
-$('#form-add-client').submit(function(e){
-    e.preventDefault();
-    $.ajax({
-        url: "/client/add",
-        type: "POST",
-        data: new FormData(this),
-        contentType: false,
-        cache: false,
-        processData: false,
-        beforeSend: function(){ 
-            $('#btn-add-client').prop('disabled', true);
-        },
-        error: function(data){
-            $('#btn-add-client').prop('disabled', false);
-        },
-        success: function(data){
-            var msg = JSON.parse(data);
-            console.log(msg);
-            if(msg.result == 'success'){
-            alert('success');
-            $("#form-add-client")[0].reset();
-            $('#btn-add-client').prop('disabled', false);
-            getAllClient();
-            } else{
-            printErrorMsg(msg.error);
-            $('#btn-add-client').prop('disabled', false);
-            }
-        }
-        });
+    $('#form-add-client').submit(function(e){
+        e.preventDefault();
+		$.ajax({
+	        url: "/client/add",
+            type: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+	        beforeSend: function(){ 
+	          $('#btn-add-client').prop('disabled', true);
+	        },
+	        error: function(data){
+	          $('#btn-add-client').prop('disabled', false);
+	        },
+	        success: function(data){
+	          var msg = JSON.parse(data);
+              console.log(msg);
+	          if(msg.result == 'success'){
+                alert('success');
+	            $("#form-add-client")[0].reset();
+	            $('#btn-add-client').prop('disabled', false);
+	            getAllClient();
+	          } else{
+	            printErrorMsg(msg.error);
+	            $('#btn-add-client').prop('disabled', false);
+	          }
+	        }
+	      });
+		
 	});
 });
 </script>
