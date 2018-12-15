@@ -48,9 +48,9 @@ class EmployeeController extends Controller
 			'employee' => $employee
 		]);
     }
-
+    
     public function createEmployee(Request $request){
-		$validation = Validator::make($request->all(), [
+        $validation = Validator::make($request->all(), [
             'lastname'=> 'required',
             'firstname'=> 'required',
             'middlename'=> 'required',
@@ -60,29 +60,29 @@ class EmployeeController extends Controller
             'email'=> 'required',
             'address'=> 'required',
             'city'=> 'required',
-            'contact'=> 'required',
+            'contact'=> 'required'
             //'client',
             //'status'
         ]);
-		if ($validation->fails())
+        if ($validation->fails())
         {
             return json_encode([
-            	'result' => 'failed', 
-            	'message' => 'Invalid Data Detected. Please try again. ',
-            	'error' => $validation->errors()->all()
+                'result' => 'failed', 
+                'message' => 'Invalid Data Detected. Please try again. ',
+                'error' => $validation->errors()->all()
             ]);
-		}
-		$newemployee = Employee::create($request->all());
-		if($newemployee){
-			return json_encode([
+        }
+        $newemployee = Employee::create($request->all());
+        if($newemployee){
+            return json_encode([
                 'result' => 'success', 
                 'message' => 'Successfully Added!'
             ]);
-		} else {
+        } else {
             return json_encode([
                 'result' => 'failed',
                 'message' => 'Not success'
             ]);
         }
-	}
+    }
 }

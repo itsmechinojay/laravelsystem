@@ -282,35 +282,34 @@
             });
         }
         
-    
-    $('#form-add-employee').submit(function(e){
+        $('#form-add-employee').submit(function(e){
         e.preventDefault();
-        $.ajax({
-            url: "/employee/add",
+		$.ajax({
+	        url: "/employee/add",
             type: "POST",
             data: new FormData(this),
             contentType: false,
             cache: false,
             processData: false,
-            beforeSend: function(){ 
-                $('#btn-add-employee').prop('disabled', true);
-            },
-            error: function(data){
-                $('#btn-add-employee').prop('disabled', false);
-            },
-            success: function(data){
-                var msg = JSON.parse(data);
-                console.log(msg);
-                if(msg.result == 'success'){
+	        beforeSend: function(){ 
+	          $('#btn-add-employee').prop('disabled', true);
+	        },
+	        error: function(data){
+	          $('#btn-add-employee').prop('disabled', false);
+	        },
+	        success: function(data){
+	          var msg = JSON.parse(data);
+              console.log(msg);
+	          if(msg.result == 'success'){
                 alert('success');
-                $("#form-add-employee")[0].reset();
-                $('#btn-add-employee').prop('disabled', false);
-                getAllEmployee();
-                } else{
-                printErrorMsg(msg.error);
-                $('#btn-add-employee').prop('disabled', false);
-                }
-            }
+	            $("#form-add-employee")[0].reset();
+	            $('#btn-add-employee').prop('disabled', false);
+	            getAllEmployee();
+	          } else{
+	            printErrorMsg(msg.error);
+	            $('#btn-add-employee').prop('disabled', false);
+	          }
+	        }
             });
         });
     });
