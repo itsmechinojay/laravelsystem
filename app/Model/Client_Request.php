@@ -2,6 +2,7 @@
 
 namespace App\Http\Model;
 
+
 use Illuminate\Database\Eloquent\Model;
 
 class Client_Request extends Model
@@ -12,7 +13,8 @@ class Client_Request extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'clientname',
+        'client_id',
+        'status',
         'position',
         'description',
         'needed',
