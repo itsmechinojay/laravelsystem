@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -31,7 +31,7 @@ class EmployeeController extends Controller
         $employees = DB::table('employee')
         ->paginate(500);
         
-        return view('employee',compact('employees'));
+        return view('admin/employee',compact('employees'));
     }
     
     public function getAllEmployee(Employee $employee){

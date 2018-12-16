@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -33,7 +33,7 @@ class ClientController extends Controller
         $clients = DB::table('client')
             ->paginate(500);
 
-        return view('client', compact('clients'));
+        return view('admin/client', compact('clients'));
     }
 
     public function getAllClient()

@@ -14,6 +14,7 @@
         </thead>
     </table>
 </div>
+
 <!-- Modal -->
 <div class="modal fade" id="requestModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog-lg" role="document">
@@ -32,7 +33,6 @@
                                 <th>#</th>
                                 <th>Position</th>
                                 <th>Name</th>
-                                <th>Job Description</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -66,18 +66,18 @@
                         processing: true,
                         data: msg.employeelist,
                         responsive: true,
-                        // columns: [
-                        //     { data: 'id'},
-                        //     { data: 'position'},
-                        //     { data: 'description'},
+                        columns: [
+                        { data: 'id'},
+                        { data: 'position'},
+                        { data: 'lastname'},
                         //     { data: 'needed'},
-                        //     {
-                        //         'render' : function (data, type, full, meta){             
-                        //             data = '<button id="btn-request-view" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#requestModal" class="btn btn-link btn-sm" >Approve</button>'
-                        //             return data;
-                        //         }
-                        //     }
-                        // ]
+                            {
+                                'render' : function (data, type, full, meta){             
+                                    data = '<button id="btn-request-view" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#requestModal" class="btn btn-link btn-sm" >Deploy</button>'
+                                    return data;
+                                }
+                            }
+                        ]
                     });
                 }
             },
@@ -144,5 +144,6 @@ function getAllRequest(){
             getAllRequest();
             
         });
+
 </script>
 @endsection

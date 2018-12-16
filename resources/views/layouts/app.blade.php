@@ -31,7 +31,7 @@
 
             <div class="container">
 
-                <img src="image/logo1.png" class="img-fluid" style="width:20%">
+                <img src="{{ asset('image/logo1.png')}}" class="img-fluid" style="width:20%">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
@@ -54,16 +54,16 @@
                             <a class="nav-link" href="/">Home</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="employee">Employee</a>
+                            <a class="nav-link" href="/employee">Employee</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="client">Client</a>
+                            <a class="nav-link" href="/client">Client</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="/about">About</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="request">Request</a>
+                            <a class="nav-link" href="/request">Request</a>
                         </li>
                     </ul>
                     @endguest
@@ -112,6 +112,8 @@
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{ asset('/script/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{ asset('/script/dataTables.min.js')}}"></script>
 </body>
 
 </html>
