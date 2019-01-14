@@ -23,8 +23,10 @@ Route::get('/about', 'AboutController@index')->name('about');
 Route::group(['middleware' => ['admin']], function () {
     //Employee
     Route::any('/admin/employee', 'Admin\EmployeeController@index')->name('admin.employee');
-    Route::post('/admin/employee/add', 'Admin\EmployeeController@createEmployee')->name('admin.employee.create');
-    Route::get('/admin/employee/all', 'Admin\EmployeeController@getAllEmployee');
+    Route::get('admin/show/{employee}', 'Admin\EmployeeController@index');
+    Route::post('admin/employee/add/{id}',  'Admin\EmployeeController@index')->name('employee.create');
+    Route::get('admin/employee/all', 'Admin\EmployeeController@index');
+    Route::get('admin/employee/delete', 'Admin\EmployeeController@index');
 
     //Client
     Route::any('admin/client', 'Admin\ClientController@index')->name('admin.client');

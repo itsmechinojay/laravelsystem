@@ -63,17 +63,16 @@
 
                         
                         <div class="form-group row">
-                            <label for="type" class="col-md-4 col-form-label text-md-right">{{ __('Usertype') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="type" type="text" class="form-control{{ $errors->has('type') ? ' is-invalid' : '' }}" name="type" value="{{ old('type') }}" required>
-
-                                @if ($errors->has('type'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('type') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                                <label>Usertype</label>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <select class="custom-select mr-sm-4" id="type" name="type" style="margin-bottom: .1rem;">
+                                            <option value="Admin">Admin</option>
+                                            <option value="Client">Client</option>
+                                            <option value="Employee">Employee</option>
+                                        </select>
+                                    </div>
+                                </div>
                         </div>
 
                         <div class="form-group row mb-0">

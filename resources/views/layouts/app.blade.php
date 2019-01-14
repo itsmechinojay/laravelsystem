@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>WSI</title>
+    <script src="//code.jquery.com/jquery-1.11.3.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
 
@@ -53,17 +54,30 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="/">Home</span></a>
                         </li>
+
+                        @if (Auth::check() && Auth::user()->type == 'Admin')
                         <li class="nav-item active">
-                            <a class="nav-link" href="/employee">Employee</a>
+                            <a class="nav-link" href="/admin/employee">Employee</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="/client">Client</a>
+                            <a class="nav-link" href="/admin/client">Client</a>
                         </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/admin/request">Request</a>
+                        </li>
+
+                        @elseif (Auth::check() && Auth::user()->type =='Client')
+                        <li class="nav-item active">
+                            <a class="nav-link" href="client_employee">Employee</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/client_request">Request</a>
+                        </li>
+
+                        @endif
+
                         <li class="nav-item active">
                             <a class="nav-link" href="/about">About</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/request">Request</a>
                         </li>
                     </ul>
                     @endguest
@@ -76,9 +90,9 @@
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         @if (Route::has('register'))
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
+                        </li> --}}
                         @endif @else
                         <li class="nav-item dropdown ">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -112,9 +126,8 @@
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-    <script src="{{ asset('/script/dataTables.bootstrap4.min.js')}}"></script>
-    <script src="{{ asset('/script/dataTables.min.js')}}"></script>
-    <script src="{{ asset('script/clientPage.js')}}"></script>
+    <script src="{{ asset('script/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{ asset('script/dataTables.min.js')}}"></script>
 </body>
 
 </html>

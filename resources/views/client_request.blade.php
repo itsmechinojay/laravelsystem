@@ -2,10 +2,10 @@
 @section('content')
 <div class="container">
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
-        ADD
+    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#addModal">
+        ADD REQUEST
     </button>
-    <input class="rounded" type="text" placeholder="Search" style="margin-left:auto">
+    {{-- <input class="rounded" type="text" placeholder="Search" style="margin-left:auto"> --}}
 
     <table id="requestlist" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="width:100%;margin-top:10px;text-align:center">
         <thead>

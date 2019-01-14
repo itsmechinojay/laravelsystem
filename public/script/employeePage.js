@@ -1,6 +1,6 @@
-function deleteClient(id) {
+function deleteEmployee(id) {
     $.ajax({
-        url: "/admin/client/delete",
+        url: "/admin/employee/delete",
         type: "GET",
         data: { id: id },
         beforeSend: function () { },
@@ -15,35 +15,38 @@ function deleteClient(id) {
         success: function (data) {
             var msg = JSON.parse(data);
             if (msg.result == "success") {
-                getAllClient();
+                getAllEmployee();
             } else {
             }
         }
     });
 }
-function getAllClient() {
+
+function getAllEmployee() {
     $.ajax({
-        url: "/admin/client/all",
+        url: "/admin/employee/all",
         type: "GET",
         contentType: false,
         cache: false,
         processData: false,
         beforeSend: function () {
-            $("#clientlist")
+            $("#employeelist")
                 .DataTable()
                 .destroy();
         },
         success: function (data) {
             var msg = JSON.parse(data);
             if (msg.result == "success") {
-                console.log(msg.client);
-                $("#clientlist").DataTable({
+                console.log(msg.employee);
+                $("#employeelist").DataTable({
                     processing: true,
-                    data: msg.client,
+                    data: msg.employee,
                     responsive: true,
                     columns: [
-                        { data: "id" },
-                        { data: "clientname" },
+                        { data: "lastname" },
+                        { data: "firstname" },
+                        { data: "middlename" },
+                        { data: "position" },
                         { data: "email" },
                         { data: "address" },
                         { data: "city" },
@@ -51,9 +54,9 @@ function getAllClient() {
                         {
                             render: function (data, type, full, meta) {
                                 data =
-                                    '<button id="btn-client-view" type="button" onclick="getClient(' +
+                                    '<button id="btn-employee-view" type="button" onclick="getEmployee(' +
                                     full["id"] +
-                                    ');" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#addModal" class="btn btn-link btn-sm" >View</button>||<button id="btn-client-delete" type="button" onclick="deleteClient(' +
+                                    ');" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#addModal" class="btn btn-link btn-sm" >View</button>||<button id="btn-employee-delete" type="button" onclick="deleteEmployee(' +
                                     full["id"] +
                                     ');" class="btn btn-link btn-sm" >Delete</button>';
                                 return data;
@@ -63,64 +66,67 @@ function getAllClient() {
                 });
             }
         },
-        error: function (xhr, ajaxOptions, thrownError) {
-            // if error occured
+        error: function (xhr, ajaxOptions, thrownError) { // if error occured
             console.log("Error: " + thrownError);
         },
-        complete: function () { }
+        complete: function () {
+        },
     });
 }
 
-function getClient(id) {
+function getEmployee(id) {
     $.get("/admin/show/" + id, function (data) {
         var msg = JSON.parse(data);
         if (msg.result == "success") {
-            $("#clientname").val(msg.client.clientname);
-            $("#email").val(msg.client.email);
-            $("#address").val(msg.client.address);
-            $("#city").val(msg.client.city);
-            $("#contact").val(msg.client.contact);
-            $("#btn-client-add").attr("data-client-id", id);
+            $("#lastname").val(msg.employee.lastname);
+            $("#firstname").val(msg.employee.firstname);
+            $("#middlename").val(msg.employee.middlename);
+            $("#position").val(msg.employee.position);
+            $("#email").val(msg.employee.email);
+            $("#address").val(msg.employee.address);
+            $("#city").val(msg.employee.city);
+            $("#contact").val(msg.employee.contact);
+            $("#btn-employee-add").attr("data-employee-id", id);
         }
     });
 }
 
 $(document).ready(function () {
-    $("#btn-client-create").click(function () {
-        $("#form-add-client")[0].reset();
-        $("#btn-client-add").attr("data-client-id", 0);
+    $("#btn-employee-create").click(function () {
+        $("#form-add-employee")[0].reset();
+        $("#btn-employee-add").attr("data-employee-id", 0);
     });
 
-    getAllClient();
+    getAllEmployee();
 
-    $("#form-add-client").submit(function (e) {
+    $("#form-add-employee").submit(function (e) {
         e.preventDefault();
         $.ajax({
             url:
-                "/admin/client/add/" +
-                $("#btn-client-add").attr("data-client-id"),
+                "/admin/employee/add/" +
+                $("#btn-employee-add").attr("data-employee-id"),
             type: "POST",
             data: new FormData(this),
             contentType: false,
             cache: false,
             processData: false,
             beforeSend: function () {
-                $("#btn-add-client").prop("disabled", true);
+                $("#btn-employee-add").prop("disabled", true);
             },
             error: function (data) {
-                $("#btn-add-client").prop("disabled", false);
+                $("#btn-add-employee").prop("disabled", false);
             },
             success: function (data) {
                 var msg = JSON.parse(data);
                 console.log(msg);
                 if (msg.result == "success") {
                     alert("success");
-                    $("#form-add-client")[0].reset();
-                    $("#btn-add-client").prop("disabled", false);
-                    getAllClient();
+                    $("#form-add-employee")[0].reset();
+                    $("#btn-employee-add").prop("disabled", false);
+                    getAllEmployee();
                 } else {
                     printErrorMsg(msg.error);
-                    $("#btn-add-client").prop("disabled", false);
+                    $("#btn-employee-add").prop("disabled", false);
                 }
             }
         });
