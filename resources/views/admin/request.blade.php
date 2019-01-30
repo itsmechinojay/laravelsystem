@@ -124,9 +124,14 @@ function getAllRequest(){
                             { data: 'description'},
                             { data: 'needed'},
                             {
-                                'render' : function (data, type, full, meta){             
+                                'render' : function (data, type, full, meta){     
+                                    if(full['status'] == 0){
                                     data = '<button id="btn-client-delete" type="button" onclick="getAllEmployee()" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#requestModal" class="btn btn-link btn-sm" >Approve</button>'
                                     return data;
+                                    }else{
+                                    data = '<button id="btn-client-delete" type="button" onclick="getAllEmployee()" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#requestModal" class="btn btn-link btn-sm" >Deploy</button>'
+                                    return data;
+                                    }
                                 }
                             }
                         ]

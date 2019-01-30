@@ -43,6 +43,7 @@ function getAllEmployee() {
                     data: msg.employee,
                     responsive: true,
                     columns: [
+                        { data: "id" },
                         { data: "lastname" },
                         { data: "firstname" },
                         { data: "middlename" },

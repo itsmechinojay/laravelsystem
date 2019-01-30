@@ -43,4 +43,27 @@ class RequestController extends Controller
             'employeelist' => $employee
         ]);
     }
+    public function formAction()
+    {
+        $request = Input::get('status');
+        if (Input::get('Approve')) {
+            $this->approveResquest($request);
+        } elseif (Input::get('Pending')) {
+            $this->pendingRequest($request);
+        }
+
+        return redirect('admin');
+    }
+
+    public function approveResquest($request)
+    {
+        foreach ($request as $requestId)
+            Client_Request::findOrNew($requestId)->update(['status' => "1"]);
+    }
+
+    public function pendingRequest($request)
+    {
+        foreach ($request as $requestId)
+            Client_Request::findOrNew($requestId)->update(['status' => "0"]);
+    }
 }

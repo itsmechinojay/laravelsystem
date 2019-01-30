@@ -6,7 +6,9 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Middle Name</th>
                 <th>Position</th>
                 <th>Email</th>
                 <th>Address</th>

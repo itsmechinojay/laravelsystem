@@ -28,16 +28,16 @@ class Client_RequestController extends Controller
     public function index()
     {
         $client_requests = DB::table('client_request')
-        ->paginate(500);
-        
-        return view('client_request',compact('client_requests'));
+            ->paginate(500);
+
+        return view('client_request', compact('client_requests'));
     }
 
     public function getRequest()
     {
         $request = DB::table('client_request')
-                    ->where('client_id', '=', Auth::user()->id)
-                    ->get();
+            ->where('client_id', '=', Auth::user()->id)
+            ->get();
         return json_encode([
             'result' => 'success',
             'request' => $request
@@ -55,7 +55,7 @@ class Client_RequestController extends Controller
         ]);
 
         if ($requestEmployee) {
-                
+
             return json_encode([
                 'result' => 'success',
                 'message' => 'Successfully Added!'

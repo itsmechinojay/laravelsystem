@@ -68,11 +68,31 @@
 
                         @elseif (Auth::check() && Auth::user()->type =='Client')
                         <li class="nav-item active">
-                            <a class="nav-link" href="client_employee">Employee</a>
+                            <a class="nav-link" href="/client_employee">Employee</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="/client_request">Request</a>
                         </li>
+
+                        @elseif (Auth::check() && Auth::user()->type =='Dev')
+                        <!--Admin -->
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/admin/employee">Admin Employee</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/admin/client">Admin Client</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/admin/request">Admin Request</a>
+                        </li>
+                        <!--Client -->
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/client_employee">Client Employee</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/client_request">Client Request</a>
+                        </li>
+                        <!-- Employee-->
 
                         @endif
 
