@@ -100,32 +100,7 @@
                             </div>
                         </div>
                     </div>
-                {{-- <div class="modal-body">
-                    <div class="form-group row">
-                            <label>Client Name</label>
-                            <input type="text" class="form-control" id="clientname" name="clientname">
-                    </div>
-
-                    <div class="form-group row">
-                            <label>Email Address</label>
-                            <input type="email" class="form-control" id="email" name="email">
-                    </div>
-
-                    <div class="form-group row">
-                            <label>Address</label>
-                            <input type="text" class="form-control" id="address" name="address">
-                    </div>
-
-                    <div class="form-group row">
-                            <label>City</label>
-                            <input type="text" class="form-control" id="city" name="city">
-                    </div>
-
-                    <div class="form-group row">
-                            <label>Contact</label>
-                            <input type="text" class="form-control" id="contact" name="contact">
-                    </div>
-                </div> --}}
+                
                 <div class="modal-footer">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <button id="btn-client-add" data-client-id="0" type="submit" class="btn btn-primary">Save</button>

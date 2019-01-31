@@ -1,8 +1,9 @@
 @extends('layouts.app') 
 @section('content')
+
 <div class="container">
-    <button type="button" id="btn-employee-create" class="btn btn-link" data-toggle="modal" data-target="#addModal">ADD EMPLOYEE</button>
-    <table id="employeelist" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+    <button type="button" id="btn-employee-create" class="btn btn-link" data-toggle="modal" data-target="#addModal">Add Employee</button>
+    <table id="employeelist" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
                 <th>ID</th>
@@ -106,9 +107,11 @@
     </div>
 
 
-    {{-- <script>
+    {{--
+    <script>
         move to employeePage.js
     </script> --}}
-    
+
     <script src="{{ asset('script/employeePage.js')}}"></script>
+    
 @endsection

@@ -51,8 +51,12 @@
                     </ul>
                     @else
                     <ul class="navbar-nav mr-auto">
+
                         <li class="nav-item active">
                             <a class="nav-link" href="/">Home</span></a>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/employee_user">Profile</a>
+                            </li>
                         </li>
 
                         @if (Auth::check() && Auth::user()->type == 'Admin')
@@ -64,6 +68,9 @@
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="/admin/request">Request</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/admin/account">Account</a>
                         </li>
 
                         @elseif (Auth::check() && Auth::user()->type =='Client')
@@ -109,11 +116,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
-                        @if (Route::has('register'))
-                        {{-- <li class="nav-item">
+                        @if (Route::has('register')) {{--
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li> --}}
-                        @endif @else
+                        </li> --}} @endif @else
                         <li class="nav-item dropdown ">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false" v-pre>

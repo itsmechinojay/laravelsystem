@@ -41,6 +41,9 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('admin/getallrequest', 'Admin\RequestController@getAllRequest');
     Route::get('admin/getallemployee', 'Admin\RequestController@getAllEmployee');
     Route::post('admin/action', array('uses' => 'RequestController@formAction'));
+
+    //Account
+    Route::any('/admin/account', 'Admin\AccountController@index')->name('admin.request');
 });
 
 Route::group(['middleware' => ['client']], function () {
