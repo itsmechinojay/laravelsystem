@@ -1,4 +1,4 @@
-function deleteAccountt(id) {
+function deleteAccount(id) {
     $.ajax({
         url: "/admin/account/delete",
         type: "GET",
@@ -15,13 +15,13 @@ function deleteAccountt(id) {
         success: function (data) {
             var msg = JSON.parse(data);
             if (msg.result == "success") {
-                getAllClient();
+                getAllAccount();
             } else {
             }
         }
     });
 }
-function getAllClient() {
+function getAllAccount() {
     $.ajax({
         url: "/admin/account/all",
         type: "GET",

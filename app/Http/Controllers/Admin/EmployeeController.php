@@ -67,8 +67,6 @@ class EmployeeController extends Controller
             'address' => 'required',
             'city' => 'required',
             'contact' => 'required',
-            'client' => 'required',
-            'status' => 'required'
         ]);
         if ($validation->fails()) {
             return json_encode([
@@ -78,7 +76,8 @@ class EmployeeController extends Controller
             ]);
         }
         if ($id == 0) {
-            $newemployee = Employee::create($request->all());
+            $newemployee = Employee::create( $request->all());
+              
             $newAccount = User::create([
                 'name' => $request['lastname'],
                 'email' => $request['email'],
@@ -111,40 +110,6 @@ class EmployeeController extends Controller
                 ]);
             }
         }
-        
-//         $validation = Validator::make($request->all(), [
-//             'lastname' => 'required',
-//             'firstname' => 'required',
-//             'middlename' => 'required',
-//             'position' => 'required',
-//             'gender' => 'required',
-//             'bday' => 'required',
-//             'email' => 'required',
-//             'address' => 'required',
-//             'city' => 'required',
-//             'contact' => 'required',
-//             'client' => 'required',
-//             'status' => 'required'
-//         ]);
-//         if ($validation->fails()) {
-//             return json_encode([
-//                 'result' => 'failed',
-//                 'message' => 'Invalid Data Detected. Please try again. ',
-//                 'error' => $validation->errors()->all()
-//             ]);
-//         }
-//         $newemployee = Employee::create($request->all());
-//         if ($newemployee) {
-//             return json_encode([
-//                 'result' => 'success',
-//                 'message' => 'Successfully Added!'
-//             ]);
-//         } else {
-//             return json_encode([
-//                 'result' => 'failed',
-//                 'message' => 'Not success'
-//             ]);
-//         }
     }
 
     public function deleteEmployee(Request $request)

@@ -22,11 +22,18 @@ Route::get('/about', 'AboutController@index')->name('about');
 
 Route::group(['middleware' => ['admin']], function () {
     //Employee
-    Route::any('/admin/employee', 'Admin\EmployeeController@index')->name('admin.employee');
-    Route::get('admin/show/{employee}', 'Admin\EmployeeController@index');
-    Route::post('admin/employee/add/{id}',  'Admin\EmployeeController@index')->name('employee.create');
-    Route::get('admin/employee/all', 'Admin\EmployeeController@index');
-    Route::get('admin/employee/delete', 'Admin\EmployeeController@index');
+
+    // Route::any('/admin/employee', 'Admin\EmployeeController@index')->name('admin.employee');
+    // Route::get('admin/show/{employee}', 'Admin\EmployeeController@index');
+    // Route::post('admin/employee/add/{id}',  'Admin\EmployeeController@index')->name('employee.create');
+    // Route::get('admin/employee/all', 'Admin\EmployeeController@index');
+    // Route::get('admin/employee/delete', 'Admin\EmployeeController@index');
+    
+    Route::any('admin/employee', 'Admin\EmployeeController@index')->name('admin.employee');
+    Route::get('admin/show/{employee}', 'Admin\EmployeeController@getEmployee');
+    Route::post('admin/employee/add/{id}', 'Admin\EmployeeController@createEmployee')->name('employee.create');
+    Route::get('admin/employee/all', 'Admin\EmployeeController@getAllEmployee');
+    Route::get('admin/employee/delete', 'Admin\EmployeeController@deleteEmployee');
 
     //Client
     Route::any('admin/client', 'Admin\ClientController@index')->name('admin.client');
@@ -43,7 +50,11 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('admin/action', array('uses' => 'RequestController@formAction'));
 
     //Account
-    Route::any('/admin/account', 'Admin\AccountController@index')->name('admin.request');
+    Route::any('admin/account', 'Admin\AccountController@index')->name('admin.account');
+    Route::get('admin/show/{users}', 'Admin\AccountController@getAccount');
+    Route::post('admin/account/add/{id}', 'Admin\AccountController@createAccount')->name('account.create');
+    Route::get('admin/account/all', 'Admin\AccountController@getAllAccount');
+    Route::get('admin/account/delete', 'Admin\AccountController@deleteAccount');
 });
 
 Route::group(['middleware' => ['client']], function () {

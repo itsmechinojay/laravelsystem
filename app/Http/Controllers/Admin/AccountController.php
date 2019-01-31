@@ -40,7 +40,7 @@ class AccountController extends Controller
         $accountlist = User::all();
         return json_encode([
             'result' => 'success',
-            'users' => $accounttlist
+            'users' => $accountlist
         ]);
     }
 
@@ -52,7 +52,7 @@ class AccountController extends Controller
         ]);
     }
 
-    public function createaAccount($id = 0, Request $request)
+    public function createAccount($id = 0, Request $request)
     {
 
         $validation = Validator::make($request->all(), [
@@ -69,25 +69,12 @@ class AccountController extends Controller
             ]);
         }
         if ($id == 0) {
-            $newaccount = User::create($request->all());
-            $newAccount = User::create([
+            return User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
                 'type' => $data['type'],
             ]);
-            if ($newaccount && $newAccount) {
-                
-                return json_encode([
-                    'result' => 'success',
-                    'message' => 'Successfully Added!'
-                ]);
-            } else {
-                return json_encode([
-                    'result' => 'failed',
-                    'message' => 'Not success'
-                ]);
-            }
         } else {
             $updateAccount = User::where('id', $id)->update($request->except('_token'));
             if ($updateAccount) {

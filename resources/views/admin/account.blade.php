@@ -3,7 +3,7 @@
 
 <div class="container">
     <button type="button" id="btn-client-create" class="btn btn-link" data-toggle="modal" data-target="#addModal">Add Account</button>
-    <table id="clientlist" class="table table-striped table-bordered" style="width:100%">
+    <table id="accountlist" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
                 <th>#</th>
