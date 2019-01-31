@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Model\Employee;
 use Validator;
-use Illuminate\Support\Facades\Hash;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
 {
@@ -53,7 +53,7 @@ class EmployeeController extends Controller
         ]);
     }
 
-    public function createEmployee(Request $request)
+    public function createEmployee($id = 0, Request $request)
     {
 
         $validation = Validator::make($request->all(), [
@@ -76,7 +76,20 @@ class EmployeeController extends Controller
             ]);
         }
         if ($id == 0) {
-            $newemployee = Employee::create( $request->all());
+            $newemployee = Employee::create([
+                'lastname' => $request['lastname'],
+                'firstname' => $request['firstname'],
+                'middlename' => $request['middlename'],
+                'position' => $request['position'],
+                'gender' => $request['gender'],
+                'bday' => $request['bday'],
+                'email' => $request['email'],
+                'address' => $request['address'],
+                'city' => $request['city'],
+                'contact' => $request['contact'],
+                'client' => 'Undeployed',
+                'status' => '1',
+            ]);
               
             $newAccount = User::create([
                 'name' => $request['lastname'],
@@ -84,7 +97,7 @@ class EmployeeController extends Controller
                 'password' => Hash::make(1234),
                 'type' => 'Employee',
             ]);
-            if ($$newemployee && $newAccount) {
+            if ($newemployee && $newAccount) {
 
                 return json_encode([
                     'result' => 'success',
