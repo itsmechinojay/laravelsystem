@@ -6,9 +6,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class AccountController extends Controller
 {
@@ -30,7 +31,7 @@ class AccountController extends Controller
      */
     public function index()
     {
-        $clients = DB::table('users')
+        $accounts = DB::table('users')
             ->paginate(500);
 
         return view('admin/account', compact('accounts'));
@@ -89,8 +90,6 @@ class AccountController extends Controller
                 ]);
             }
         }
-
-        
     }
 
     public function deleteAccount(Request $request)

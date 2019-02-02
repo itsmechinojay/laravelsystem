@@ -75,6 +75,60 @@ function getAllEmployee() {
     });
 }
 
+function getDeployedEmployee() {
+    $.ajax({
+        url: "/admin/employee/deployed" +
+        $("#btn-deployed-employee").attr("data-employee-id"),
+        type: "GET",
+        contentType: false,
+        cache: false,
+        processData: false,
+        beforeSend: function () {
+            $("#employeelist")
+                .DataTable()
+                .destroy();
+        },
+        success: function (data) {
+            var msg = JSON.parse(data);
+            if (msg.result == "success") {
+                console.log(msg.employee);
+                $("#employeelist").DataTable({
+                    processing: true,
+                    data: msg.employee,
+                    responsive: true,
+                    columns: [
+                        { data: "id" },
+                        { data: "lastname" },
+                        { data: "firstname" },
+                        { data: "middlename" },
+                        { data: "position" },
+                        { data: "email" },
+                        { data: "address" },
+                        { data: "city" },
+                        { data: "contact" },
+                        {
+                            render: function (data, type, full, meta) {
+                                data =
+                                    '<button id="btn-employee-view" type="button" onclick="getEmployee(' +
+                                    full["id"] +
+                                    ');" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#addModal" class="btn btn-link btn-sm" >View</button>||<button id="btn-employee-delete" type="button" onclick="deleteEmployee(' +
+                                    full["id"] +
+                                    ');" class="btn btn-link btn-sm" >Delete</button>';
+                                return data;
+                            }
+                        }
+                    ]
+                });
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) { // if error occured
+            console.log("Error: " + thrownError);
+        },
+        complete: function () {
+        },
+    });
+}
+
 function getEmployee(id) {
     $.get("/admin/show/" + id, function (data) {
         var msg = JSON.parse(data);
@@ -93,13 +147,13 @@ function getEmployee(id) {
 }
 
 $(document).ready(function () {
+
     $("#btn-employee-create").click(function () {
         $("#form-add-employee")[0].reset();
         $("#btn-employee-add").attr("data-employee-id", 0);
     });
 
     getAllEmployee();
-
     $("#form-add-employee").submit(function (e) {
         e.preventDefault();
         $.ajax({
@@ -132,5 +186,7 @@ $(document).ready(function () {
             }
         });
     });
+
+    
 });
 

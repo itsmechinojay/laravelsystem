@@ -33,16 +33,23 @@ class RequestController extends Controller
         ]);
     }
 
-    public function getAllEmployee()
+    public function getAllEmployee(Request $request)
     {
+        
+        $employee_position_array = $request->input('position');
+        
         $employee = DB::table('employee')
-                    ->where('status', '=', 0)
-                    ->get();
+          ->where('position', $employee_position_array)->get();
+        // $employee = DB::table('employee')
+        //     ->where('Position', '=', $request)
+        //     ->where('Client','=','Pending')
+        //     ->get();
         return json_encode([
             'result' => 'success',
             'employeelist' => $employee
         ]);
     }
+
     public function formAction()
     {
         $request = Input::get('status');
@@ -66,4 +73,11 @@ class RequestController extends Controller
         foreach ($request as $requestId)
             Client_Request::findOrNew($requestId)->update(['status' => "0"]);
     }
+
+    public function updateRequest()
+    {
+        DB::table('client_request')->where('status',0)->update(['status' => 1]);
+        return response()->json($post);    
+    }
 }
+

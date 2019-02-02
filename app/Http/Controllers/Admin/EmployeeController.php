@@ -45,11 +45,34 @@ class EmployeeController extends Controller
         ]);
     }
 
-    public function getEmployee(Client $employee)
+    public function getEmployee(Employee $employee)
     {
         return json_encode([
             'result' => 'success',
             'employee' => $employee
+        ]);
+    }
+
+    
+    public function getDeplyedEmployee()
+    {
+        $employee = DB::table('employee')
+            ->where('Client', '=', "Deployed")
+            ->get();
+        return json_encode([
+            'result' => 'success',
+            'employeelist' => $employee
+        ]);
+    }
+
+    public function getPendingEmployee()
+    {
+        $employee = DB::table('employee')
+            ->where('Client', '=', "Pending")
+            ->get();
+        return json_encode([
+            'result' => 'success',
+            'employeelist' => $employee
         ]);
     }
 
@@ -87,7 +110,7 @@ class EmployeeController extends Controller
                 'address' => $request['address'],
                 'city' => $request['city'],
                 'contact' => $request['contact'],
-                'client' => 'Undeployed',
+                'client' => 'Pending',
                 'status' => '1',
             ]);
               
@@ -129,7 +152,8 @@ class EmployeeController extends Controller
     {
         $employee_id_array = $request->input('id');
         $delete_employee = Employee::where('id', $employee_id_array)->delete();
-        if ($delete_employeet) {
+        if ($delete_employee
+        ) {
             return json_encode(array('result' => 'success', 'message' => 'employee successfully deleted.'));
         }
     }

@@ -32,7 +32,9 @@
                             <tr>
                                 <th>#</th>
                                 <th>Position</th>
-                                <th>Name</th>
+                                <th>Last Name</th>
+                                <th>First Name</th>
+                                <th>Middle Name</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -46,109 +48,7 @@
         </form>
     </div>
 </div>
-<script>
-    function getAllEmployee()
-{
-    $.ajax({
-            url: '/admin/getallemployee',
-            type: "GET",
-            contentType: false,
-            cache: false,
-            processData: false,
-            beforeSend: function() {
-                $('#employeelist').DataTable().destroy(); 
-            },
-            success: function(data) {
-                var msg = JSON.parse(data);
-                if(msg.result == 'success'){
-                    console.log(msg.employeelist);
-                    $('#employeelist').DataTable({
-                        processing: true,
-                        data: msg.employeelist,
-                        responsive: true,
-                        columns: [
-                        { data: 'id'},
-                        { data: 'position'},
-                        { data: 'lastname'},
-                        //     { data: 'needed'},
-                            {
-                                'render' : function (data, type, full, meta){             
-                                    data = '<button id="btn-request-view" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#requestModal" class="btn btn-link btn-sm" >Deploy</button>'
-                                    return data;
-                                }
-                            }
-                        ]
-                    });
-                }
-            },
-            error: function(xhr, ajaxOptions, thrownError) { // if error occured
-                console.log("Error: " + thrownError);
-            },
-            complete: function() {
-            },
-        });
-}
 
-function getAllRequest(){
-    $.ajax({
-            url: '/admin/getallrequest',
-            type: "GET",
-            contentType: false,
-            cache: false,
-            processData: false,
-            beforeSend: function() {
-                $('#requestlist').DataTable().destroy(); 
-            },
-            success: function(data) {
-                var msg = JSON.parse(data);
-                if(msg.result == 'success'){
-                    console.log(msg.requestlist);
-                    $('#requestlist').DataTable({
-                        processing: true,
-                        data: msg.requestlist,
-                        responsive: true,
-                        columns: [
-                            { data: 'id'},
-                            {
-                                'render' : function (data, type, full, meta){             
-                                    if(full['status'] == 0){
-                                        data = '<td>Pending</td>'
-                                        return data;
-                                    } else{
-                                        data = '<td>Approved</td>'
-                                        return data;
-                                    }
-                                }
-                            },
-                            { data: 'position'},
-                            { data: 'description'},
-                            { data: 'needed'},
-                            {
-                                'render' : function (data, type, full, meta){     
-                                    if(full['status'] == 0){
-                                    data = '<button id="btn-client-delete" type="button" onclick="getAllEmployee()" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#requestModal" class="btn btn-link btn-sm" >Approve</button>'
-                                    return data;
-                                    }else{
-                                    data = '<button id="btn-client-delete" type="button" onclick="getAllEmployee()" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#requestModal" class="btn btn-link btn-sm" >Deploy</button>'
-                                    return data;
-                                    }
-                                }
-                            }
-                        ]
-                    });
-                }
-            },
-            error: function(xhr, ajaxOptions, thrownError) { // if error occured
-                console.log("Error: " + thrownError);
-            },
-            complete: function() {
-            },
-        });
-}
-        $(document).ready(function(){
-            getAllRequest();
-            
-        });
+<script src="{{ asset('script/requestPage.js')}}"></script>
 
-</script>
 @endsection

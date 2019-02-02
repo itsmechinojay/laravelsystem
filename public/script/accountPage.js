@@ -49,9 +49,9 @@ function getAllAccount() {
                         {
                             render: function (data, type, full, meta) {
                                 data =
-                                    '<button id="btn-client-view" type="button" onclick="getClient(' +
+                                    '<button id="btn-account-view" type="button" onclick="getAccout(' +
                                     full["id"] +
-                                    ');" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#addModal" class="btn btn-link btn-sm" >View</button>||<button id="btn-client-delete" type="button" onclick="deleteClient(' +
+                                    ');" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#addModal" class="btn btn-link btn-sm" >View</button>||<button id="btn-account-delete" type="button" onclick="deleteAccount(' +
                                     full["id"] +
                                     ');" class="btn btn-link btn-sm" >Delete</button>';
                                 return data;
@@ -73,11 +73,9 @@ function getAccount(id) {
     $.get("/admin/show/" + id, function (data) {
         var msg = JSON.parse(data);
         if (msg.result == "success") {
-            $("#clientname").val(msg.account.clientname);
+            $("#name").val(msg.account.name);
             $("#email").val(msg.account.email);
-            $("#address").val(msg.account.address);
-            $("#city").val(msg.account.city);
-            $("#contact").val(msg.account.contact);
+            $("#type").val(msg.account.type);
             $("#btn-account-add").attr("data-account-id", id);
         }
     });

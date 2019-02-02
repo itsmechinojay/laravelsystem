@@ -4,8 +4,7 @@
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-link" data-toggle="modal" data-target="#addModal">
         ADD REQUEST
-    </button>
-    {{-- <input class="rounded" type="text" placeholder="Search" style="margin-left:auto"> --}}
+    </button> {{-- <input class="rounded" type="text" placeholder="Search" style="margin-left:auto"> --}}
 
     <table id="requestlist" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="width:100%;margin-top:10px;text-align:center">
         <thead>
@@ -38,12 +37,69 @@
                     <div class="form-group row">
                         <label for="position" class="col-md-4 col-form-label text-md-right">{{ __('Job Position') }}</label>
 
-                        <div class="col-md-6">
-                            <input id="position" type="text" class="form-control{{ $errors->has('position') ? ' is-invalid' : '' }}" name="position"
-                                value="{{ old('position') }}" required> @if ($errors->has('positionl'))
-                            <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('position') }}</strong>
-                                </span> @endif
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <select class="custom-select mr-sm-4" id="position" name="position" style="margin-bottom: .1rem; width:300px">
+                                            <option value="Access Control Management Officer">Access Control Management Officer</option>
+                                            <option value="Accounting Assistant">Accounting Assistant</option>
+                                            <option value="Angular JS Developer">Angular JS Developer</option>
+                                            <option value="Business Analyst">Business Analyst</option>
+                                            <option value="Business Analyst with PL/SQL Programming">Business Analyst with PL/SQL Programming</option>
+                                            <option value="Business Process Analyst">Business Process Analyst</option>
+                                            <option value="CAD Operator">CAD Operator</option>
+                                            <option value="Customer Service Specialist">Customer Service Specialist</option>
+                                            <option value="C#.NET DEVELOPER">C# .Net Developer</option>
+                                            <option value="Data Analyst">Data Analyst</option>
+                                            <option value="Data Architect">Data Architect</option>
+                                            <option value="Database Administrator">Database Administrator</option>
+                                            <option value="Defect Manager">Defect Manager</option>
+                                            <option value="EDI Gentran Analyst">EDI Gentran Analyst</option>
+                                            <option value="Helpdesk Specialist">Helpdesk Specialist</option>
+                                            <option value="Information Security Management Officer">Information Security Management Officer</option>
+                                            <option value="IT Project Manager">IT Project Manager</option>
+                                            <option value="IT SECURITY">IT Security</option>
+                                            <option value="IT Specialist - Security Control">IT Specialist - Security Control</option>
+                                            <option value="Javascript Developer">Javascript Developer</option>
+                                            <option value="Java Developer">Java Developer</option>
+                                            <option value="Jr. Business Analyst">Jr. Business Analyst</option>
+                                            <option value="Linux Technical Lead">Linux Technical Lead</option>
+                                            <option value="Object Oriented Programmer">Object Oriented Programmer</option>
+                                            <option value="Oracle Database Administrator">Oracle Database Administrator</option>
+                                            <option value="PHP Developer">PHP Developer</option>
+                                            <option value="Payroll Assistant / Supervisor">Payroll Assistant / Supervisor</option>
+                                            <option value="PLC Programmer">PLC Programmer</option>
+                                            <option value="Project Roll-out Manager">Project Roll-out Manager</option>
+                                            <option value="Remedyforce Administrator">Remedyforce Administrator</option>
+                                            <option value="Remedyforce Support">Remedyforce Support</option>
+                                            <option value="Remedyforce/Salesforce">Remedyforce/Salesforce</option>
+                                            <option value="RPG Developer with ICMS">RPG Developer with ICMS</option>
+                                            <option value="Salesforce Developer">Salesforce Developer</option>
+                                            <option value="SAP Administrator">SAP Administrator</option>
+                                            <option value="SAP Business Intelligence Consultant">SAP Business Intelligence Consultant</option>
+                                            <option value="SAP Finance Lead">SAP Finance Lead</option>
+                                            <option value="SAP MM Process Analyst">SAP MM Process Analyst</option>
+                                            <option value="Security Infrastructure Management Officer">Security Infrastructure Management Officer</option>
+                                            <option value="Security Specialist">Security Specialist</option>
+                                            <option value="Security Tester">Security Tester</option>
+                                            <option value="Self Service Solutions Consultants">Self Service Solutions Consultants</option>
+                                            <option value="Sharepoint Farm Administrator">Sharepoint Farm Administrator</option>
+                                            <option value="Software Architect">Software Architect</option>
+                                            <option value="Software Quality Assurance Enginner">Software Quality Assurance Enginner</option>
+                                            <option value="Solutions Architect">Solutions Architect</option>
+                                            <option value="Sr.Web Application Developer">Sr. Web Application Developer</option>
+                                            <option value="Systems/Business Analyst">System/Bussiness Analyst</option>
+                                            <option value="System Administrator">System Administrator</option>
+                                            <option value="Systems Analyst">System Analyst</option>
+                                            <option value="Technical Writer">Technical Writer</option>
+                                            <option value="Test Analyst">Test Analyst</option>
+                                            <option value="Test Execution Domain Lead">Test Execution Domain Lead</option>
+                                            <option value="TIBCO Developer">TIBCO Developer</option>
+                                            <option value="TIBCO Support Analyst">TIBCO Support Analyst</option>
+                                            <option value="Workday Consultant">Workday Consultant</option>
+                                            <option value="ZTE NGN Expert">ZTE NGN Expert</option>
+                                            <option value=".NET Programmer">.Net Programmer</option>
+                                        </select>
+                            </div>
                         </div>
                     </div>
 
@@ -79,93 +135,7 @@
         </form>
     </div>
 </div>
-<script>
-function getRequest(){
-    $.ajax({
-            url: '/client_user/get_request',
-            type: "GET",
-            contentType: false,
-            cache: false,
-            processData: false,
-            beforeSend: function() {
-                $('#requestlist').DataTable().destroy(); 
-            },
-            success: function(data) {
-                var msg = JSON.parse(data);
-                if(msg.result == 'success'){
-                    console.log(msg.request);
-                    $('#requestlist').DataTable({
-                        processing: true,
-                        data: msg.request,
-                        responsive: true,
-                        columns: [
-                            { data: 'id'},
-                            {
-                                'render' : function (data, type, full, meta){             
-                                    if(full['status'] == 0){
-                                        data = '<td>Pending</td>'
-                                        return data;
-                                    } else{
-                                        data = '<td>Approved</td>'
-                                        return data;
-                                    }
-                                }
-                            },
-                            { data: 'position'},
-                            { data: 'description'},
-                            { data: 'needed'},
-                            {
-                                'render' : function (data, type, full, meta){             
-                                    data = '<button id="btn-client-delete" type="button" onclick="deleteClient('+full['id']+');" class="btn btn-link btn-sm" >Delete</button>'
-                                    return data;
-                                }
-                            }
-                        ]
-                    });
-                }
-            },
-            error: function(xhr, ajaxOptions, thrownError) { // if error occured
-                console.log("Error: " + thrownError);
-            },
-            complete: function() {
-            },
-        });
-}
-        $(document).ready(function(){
-            getRequest();
-            $('#form-add-request').submit(function(e){
-                e.preventDefault();
-                $.ajax({
-                    url: "/client_request/add",
-                    type: "POST",
-                    data: new FormData(this),
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    beforeSend: function(){ 
-                      $('#btn-add-request').prop('disabled', true);
-                    },
-                    error: function(data){
-                      $('#btn-add-request').prop('disabled', false);
-                    },
-                    success: function(data){
-                      var msg = JSON.parse(data);
-                      console.log(msg);
-                      if(msg.result == 'success'){
-                        alert('success');
-                        getRequest();
-                        $("#form-add-request")[0].reset();
-                        $('#btn-add-request').prop('disabled', false);
-                      } else{
-                        printErrorMsg(msg.error);
-                        $('#btn-add-request').prop('disabled', false);
-                      }
-                    }
-                });
-            });    
-        });
-        </script>
+
+
+<script src="{{ asset('script/client_requestPage.js')}}"></script>
 @endsection
-
-
-
