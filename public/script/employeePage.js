@@ -139,6 +139,7 @@ function getEmployee(id) {
             $("#position").val(msg.employee.position);
             $("#email").val(msg.employee.email);
             $("#address").val(msg.employee.address);
+            $("#bday").val(msg.employee.bday);
             $("#city").val(msg.employee.city);
             $("#contact").val(msg.employee.contact);
             $("#btn-employee-add").attr("data-employee-id", id);
@@ -186,7 +187,5 @@ $(document).ready(function () {
             }
         });
     });
-
-    
 });
 

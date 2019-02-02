@@ -1,11 +1,10 @@
-function getAllEmployee(position) {
+function getAllEmployee() {
     $.ajax({
         url: '/admin/getallemployee',
         type: "GET",
         contentType: false,
         cache: false,
         processData: false,
-        data:{position ,position},
         beforeSend: function () {
             $('#employeelist').DataTable().destroy();
         },
@@ -21,8 +20,6 @@ function getAllEmployee(position) {
                         { data: 'id' },
                         { data: 'position' },
                         { data: 'lastname' },
-                        { data: 'firstname' },
-                        { data: 'middlename' },
                         //     { data: 'needed'},
                         {
                             'render': function (data, type, full, meta) {
@@ -82,9 +79,7 @@ function getAllRequest() {
                                     data = '<button id="btn-request-update" type="button" onclick="updateRequest()" data-toggle="modal" data-backdrop="static" data-keyboard="false" class="btn btn-link btn-sm" >Approve</button>'
                                     return data;
                                 } else {
-                                    data = '<button id="btn-request-delete" type="button" onclick="getAllEmployee(' +
-                                    full["position"] +
-                                    ')" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#requestModal" class="btn btn-link btn-sm" >Deploy</button>'
+                                    data = '<button id="btn-request-delete" type="button" onclick="getAllEmployee()" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#requestModal" class="btn btn-link btn-sm" >Deploy</button>'
                                     return data;
                                 }
                             }
@@ -100,8 +95,6 @@ function getAllRequest() {
         },
     });
 }
-
-
 
 function updateRequest(){
     $.ajax({

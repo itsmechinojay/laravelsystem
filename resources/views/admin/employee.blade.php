@@ -4,10 +4,10 @@
     <div class="container col-1 " style="margin-left:2%;margin-top:6.3%">
         <div class="btn-group-vertical" data-toggle="buttons">
             <button type="button" id="btn-employee-create" class="btn btn-primary " data-toggle="modal" data-target="#addModal">Add Employee</button>
-            {{-- <div class="dropdown-divider"></div>
+            <div class="dropdown-divider"></div>
             <button type="button" class="btn btn-primary">All</button>
             <button type="button" class="btn btn-primary" id="btn-deployed-employee">Deployed</button>
-            <button type="button" class="btn btn-primary">Undeployed</button> --}}
+            <button type="button" class="btn btn-primary">Undeployed</button>
         </div>
     </div>
 

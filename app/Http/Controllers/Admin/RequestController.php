@@ -33,17 +33,12 @@ class RequestController extends Controller
         ]);
     }
 
-    public function getAllEmployee(Request $request)
+    public function getAllEmployee()
     {
         
-        $employee_position_array = $request->input('position');
-        
         $employee = DB::table('employee')
-          ->where('position', $employee_position_array)->get();
-        // $employee = DB::table('employee')
-        //     ->where('Position', '=', $request)
-        //     ->where('Client','=','Pending')
-        //     ->get();
+            ->where('Client','=','Pending')
+            ->get();
         return json_encode([
             'result' => 'success',
             'employeelist' => $employee
