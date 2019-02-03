@@ -33,9 +33,10 @@ class RequestController extends Controller
         ]);
     }
 
+    
+
     public function getAllEmployee()
     {
-        
         $employee = DB::table('employee')
             ->where('Client','=','Pending')
             ->get();
@@ -45,12 +46,38 @@ class RequestController extends Controller
         ]);
     }
 
+    public function getRequest(Request $request)
+    {
+        return json_encode([
+            'result' => 'success',
+            'request' => $request
+        ]);
+    }
+
+    public function Approved($id= 0, Request $request)
+    {
+        $updateRequest = Client_Request::where('id', $id)->update(['status' => "1"]);
+        if ($updateRequest) {
+            return json_encode([
+                'result' => 'success',
+                'message' => 'Successfully Approved!'
+            ]);
+        } else {
+            return json_encode([
+                'result' => 'failed',
+                'message' => 'Not success'
+            ]);
+        }
+    }
+
+
+//on question
     public function formAction()
     {
         $request = Input::get('status');
-        if (Input::get('Approve')) {
+        if (Input::get('0')) {
             $this->approveResquest($request);
-        } elseif (Input::get('Pending')) {
+        } elseif (Input::get('1')) {
             $this->pendingRequest($request);
         }
 
@@ -69,10 +96,5 @@ class RequestController extends Controller
             Client_Request::findOrNew($requestId)->update(['status' => "0"]);
     }
 
-    public function updateRequest()
-    {
-        DB::table('client_request')->where('status',0)->update(['status' => 1]);
-        return response()->json($post);    
-    }
 }
 

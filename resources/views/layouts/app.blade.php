@@ -69,7 +69,7 @@
                             <a class="nav-link" href="/admin/client">Client</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="/admin/request">Request</a>
+                            <a class="nav-link" href="/admin/request">Request(1)</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="/admin/account">Account</a>

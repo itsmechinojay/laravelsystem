@@ -53,7 +53,7 @@ function getAllClient() {
                                 data =
                                     '<button id="btn-client-view" type="button" onclick="getClient(' +
                                     full["id"] +
-                                    ');" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#addModal" class="btn btn-link btn-sm" >View</button>||<button id="btn-client-delete" type="button" onclick="deleteClient(' +
+                                    ');" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#addModal" class="btn btn-link btn-sm" >Edit</button>||<button id="btn-client-delete" type="button" onclick="deleteClient(' +
                                     full["id"] +
                                     ');" class="btn btn-link btn-sm" >Delete</button>';
                                 return data;

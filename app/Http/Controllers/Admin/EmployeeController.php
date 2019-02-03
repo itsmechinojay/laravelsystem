@@ -53,7 +53,7 @@ class EmployeeController extends Controller
         ]);
     }
 
-    
+
     public function getDeplyedEmployee()
     {
         $employee = DB::table('employee')
@@ -113,7 +113,7 @@ class EmployeeController extends Controller
                 'client' => 'Pending',
                 'status' => '1',
             ]);
-              
+
             $newAccount = User::create([
                 'name' => $request['lastname'],
                 'email' => $request['email'],
@@ -152,8 +152,7 @@ class EmployeeController extends Controller
     {
         $employee_id_array = $request->input('id');
         $delete_employee = Employee::where('id', $employee_id_array)->delete();
-        if ($delete_employee
-        ) {
+        if ($delete_employee) {
             return json_encode(array('result' => 'success', 'message' => 'employee successfully deleted.'));
         }
     }

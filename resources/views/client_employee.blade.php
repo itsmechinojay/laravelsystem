@@ -5,7 +5,7 @@
 <div class="container row mx-auto">
     <input class="rounded" type="text" placeholder="Search" style="margin-left:auto">
 
-        <table id="employeelist" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="width:100%;margin-top:10px;text-align:center">
+        <table id="employeelist" class="display table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="width:100%;margin-top:10px;text-align:center">
             <thead>
                 <tr>
                     <th>Name</th>

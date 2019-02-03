@@ -6,7 +6,7 @@
         ADD REQUEST
     </button> {{-- <input class="rounded" type="text" placeholder="Search" style="margin-left:auto"> --}}
 
-    <table id="requestlist" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="width:100%;margin-top:10px;text-align:center">
+    <table id="requestlist" class="display table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="width:100%;margin-top:10px;text-align:center">
         <thead>
             <tr>
                 <th>#</th>

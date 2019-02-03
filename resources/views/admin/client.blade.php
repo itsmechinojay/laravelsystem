@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="container col-10">
-        <table id="clientlist" class="table table-striped table-bordered" style="width:100%">
+        <table id="clientlist" class="display text-center table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
                     <th>#</th>
@@ -34,6 +34,7 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body">
                     <div class="form-group row">
                         <label for="clientname" class="col-md-4 col-form-label text-md-right">{{ __('Client Name') }}</label>
@@ -100,6 +101,7 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <button id="btn-client-add" data-client-id="0" type="submit" class="btn btn-primary">Save</button>
                 </div>
+            </div>
             </div>
         </form>
     </div>

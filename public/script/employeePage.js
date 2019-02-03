@@ -57,7 +57,7 @@ function getAllEmployee() {
                                 data =
                                     '<button id="btn-employee-view" type="button" onclick="getEmployee(' +
                                     full["id"] +
-                                    ');" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#addModal" class="btn btn-link btn-sm" >View</button>||<button id="btn-employee-delete" type="button" onclick="deleteEmployee(' +
+                                    ');" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#addModal" class="btn btn-link btn-sm" >Edit</button>||<button id="btn-employee-delete" type="button" onclick="deleteEmployee(' +
                                     full["id"] +
                                     ');" class="btn btn-link btn-sm" >Delete</button>';
                                 return data;

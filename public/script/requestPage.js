@@ -20,6 +20,8 @@ function getAllEmployee() {
                         { data: 'id' },
                         { data: 'position' },
                         { data: 'lastname' },
+                        { data: 'firstname' },
+                        { data: 'middlename' },
                         //     { data: 'needed'},
                         {
                             'render': function (data, type, full, meta) {
@@ -76,7 +78,9 @@ function getAllRequest() {
                         {
                             'render': function (data, type, full, meta) {
                                 if (full['status'] == 0) {
-                                    data = '<button id="btn-request-update" type="button" onclick="updateRequest()" data-toggle="modal" data-backdrop="static" data-keyboard="false" class="btn btn-link btn-sm" >Approve</button>'
+                                    data = '<button id="btn-approve-request" type="button" onclick="getRequest(' +
+                                    full["id"] +
+                                    ');" data-toggle="modal" data-backdrop="static" data-target="#approveModal" data-keyboard="false" class="btn btn-link btn-sm" >Approve</button>'
                                     return data;
                                 } else {
                                     data = '<button id="btn-request-delete" type="button" onclick="getAllEmployee()" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#requestModal" class="btn btn-link btn-sm" >Deploy</button>'
@@ -96,33 +100,42 @@ function getAllRequest() {
     });
 }
 
-function updateRequest(){
-    $.ajax({
-        url: "/admin/action",
-        type: "POST",
-        data: { id: id },
-        beforeSend: function () { },
-        error: function (data) {
-            if (data.readyState == 4) {
-                errors = JSON.parse(data.responseText);
-                $.each(errors, function (key, value) {
-                    console.log({ type: 2, text: value, time: 2 });
-                });
-            }
-        },
-        success: function (data) {
-            var msg = JSON.parse(data);
-            if (msg.result == "success") {
-                getAllEmployee();
-            } else {
-            }
+function getRequest(id) {
+    $.get("/admin/show/" + id, function (data) {
+        var msg = JSON.parse(data);
+        if (msg.result == "success") {
+            $("#btn-request-approve").attr("data-request-id", id);
         }
     });
 }
 
 $(document).ready(function () {
     getAllRequest();
-
+    $("#form-approve-request").submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            url:
+                "/admin/request/" +
+                $("#btn-request-appr").attr("data-request-id"),
+            type: "POST",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function () {
+            },
+            success: function (data) {
+                var msg = JSON.parse(data);
+                console.log(msg);
+                if (msg.result == "success") {
+                    alert("success");
+                    $("#form-request-approve")[0].reset();
+                    $("#btn-request-approve").prop("disabled", false);
+                    getAllRequest();
+                }
+            }
+        });
+    });
 });
 
 
