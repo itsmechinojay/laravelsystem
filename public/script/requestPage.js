@@ -78,11 +78,12 @@ function getAllRequest() {
                         {
                             'render': function (data, type, full, meta) {
                                 if (full['status'] == 0) {
-                                    data = '<button id="btn-approve-request" type="button" onclick="getRequest(' +
+                                    data = '<button id="btn-request-update" type="button" onclick="getRequest(' +
                                     full["id"] +
-                                    ');" data-toggle="modal" data-backdrop="static" data-target="#approveModal" data-keyboard="false" class="btn btn-link btn-sm" >Approve</button>'
+                                    ')" data-toggle="modal" data-toggle="modal" data-target="#approveModal" data-backdrop="static" data-keyboard="false" class="btn btn-link btn-sm" >Approve</button>'
                                     return data;
-                                } else {
+                                } 
+                                else {
                                     data = '<button id="btn-request-delete" type="button" onclick="getAllEmployee()" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#requestModal" class="btn btn-link btn-sm" >Deploy</button>'
                                     return data;
                                 }
@@ -116,26 +117,31 @@ $(document).ready(function () {
         $.ajax({
             url:
                 "/admin/request/" +
-                $("#btn-request-appr").attr("data-request-id"),
+                $("#btn-request-approve").attr("data-request-id"),
             type: "POST",
             data: new FormData(this),
             contentType: false,
             cache: false,
             processData: false,
             beforeSend: function () {
+                $("#btn-request-approve").prop("disabled", true);
+            },
+            error: function (data) {
+                $("#btn-request-approve").prop("disabled", false);
             },
             success: function (data) {
                 var msg = JSON.parse(data);
                 console.log(msg);
                 if (msg.result == "success") {
                     alert("success");
-                    $("#form-request-approve")[0].reset();
+                    $("#form-approve-request")[0].reset();
                     $("#btn-request-approve").prop("disabled", false);
-                    getAllRequest();
+                    getAllEmployee();
+                } else {
+                    printErrorMsg(msg.error);
+                    $("#btn-request-approve").prop("disabled", false);
                 }
             }
         });
     });
 });
-
-

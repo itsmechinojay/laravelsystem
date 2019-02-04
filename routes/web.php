@@ -52,6 +52,7 @@ Route::group(['middleware' => ['admin'] && ['dev']], function () {
     Route::get('admin/getallemployee', 'Admin\RequestController@getAllEmployee');
     Route::post('admin/action', array('uses' => 'RequestController@formAction'));
     Route::post('admin/request/{id}', 'Admin\RequestController@Approved')->name('request.create');
+    Route::post('admin/deploy/{id}', 'Admin\RequestController@Deploy')->name('deploy.create');
 
     //Account
     Route::any('admin/account', 'Admin\AccountController@index')->name('admin.account');

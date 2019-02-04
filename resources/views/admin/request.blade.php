@@ -48,6 +48,7 @@
         </form>
     </div>
 </div>
+
 <!-- Modal -->
 <div class="modal fade ml-auto mr-auto" id="approveModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel2" aria-hidden="true" style="width:30%">
     <div class="modal-dialog-lg" role="document">

@@ -78,7 +78,7 @@ function getAllEmployee() {
 function getDeployedEmployee() {
     $.ajax({
         url: "/admin/employee/deployed" +
-        $("#btn-deployed-employee").attr("data-employee-id"),
+        $("#btn-employee-add").attr("data-employee-id", id),
         type: "GET",
         contentType: false,
         cache: false,
