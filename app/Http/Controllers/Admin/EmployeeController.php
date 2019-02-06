@@ -89,7 +89,7 @@ class EmployeeController extends Controller
             'email' => 'required',
             'address' => 'required',
             'city' => 'required',
-            'contact' => 'required',
+            'contact' =>['required', 'string', 'max:255'],
         ]);
         if ($validation->fails()) {
             return json_encode([
@@ -115,7 +115,7 @@ class EmployeeController extends Controller
             ]);
 
             $newAccount = User::create([
-                'name' => $request['lastname'],
+                'name' => $request['Lastname'],
                 'email' => $request['email'],
                 'password' => Hash::make(1234),
                 'type' => 'Employee',

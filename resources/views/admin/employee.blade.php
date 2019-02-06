@@ -161,12 +161,12 @@
 
                     <div class="form-group row">
                         <div class="form-group col-8">
-                            <label>Email Address</label>
-                            <input type="email" class="form-control" id="email" name="email">
+                            <label>Email Address<a class="font-small">(Prepared email for Login)</a></label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Example@wesupportinc.com">
                         </div>
                         <div class="form-group col-4">
                             <label>Contact</label>
-                            <input type="contact" class="form-control" id="contact" name="contact">
+                            <input type="contact" class="form-control" id="contact" name="contact" placeholder="9** *** ****">
                         </div>
                     </div>
                 </div>

@@ -94,6 +94,9 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="/admin/request">Admin Request</a>
                         </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/admin/account">Admin Account</a>
+                        </li>
                         <!--Client -->
                         <li class="nav-item active">
                             <a class="nav-link" href="/client_employee">Client Employee</a>

@@ -41,21 +41,20 @@ class AccountController extends Controller
         $accountlist = User::all();
         return json_encode([
             'result' => 'success',
-            'users' => $accountlist
+            'account' => $accountlist
         ]);
     }
 
-    public function getAccount(User $account)
+    public function getAccount(Account $account)
     {
         return json_encode([
             'result' => 'success',
-            'users' => $account
+            'account' => $account
         ]);
     }
 
     public function createAccount($id = 0, Request $request)
     {
-
         $validation = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -77,7 +76,7 @@ class AccountController extends Controller
                 'type' => $data['type'],
             ]);
         } else {
-            $updateAccount = User::where('id', $id)->update($request->except('_token'));
+            $updateAccount = User::where('id', $id)->update('password'->Hash::make(1234));
             if ($updateAccount) {
                 return json_encode([
                     'result' => 'success',
@@ -92,11 +91,35 @@ class AccountController extends Controller
         }
     }
 
+    public function getPassword(User $user)
+    {
+        return json_encode([
+            'result' => 'success',
+            'user' => $user
+        ]);
+    }
+
+    public function resetPassword($id = 0, Request $request)
+    {
+        $updateAccount = User::where('id', $id)->update(['password'->Hash::make(1234)]);
+        if ($updateAccount) {
+            return json_encode([
+                'result' => 'success',
+                'message' => 'Successfully Updated!'
+            ]);
+        } else {
+            return json_encode([
+                'result' => 'failed',
+                'message' => 'Not success'
+            ]);
+        }
+    }
+
     public function deleteAccount(Request $request)
     {
         $account_id_array = $request->input('id');
         $delete_account = User::where('id', $account_id_array)->delete();
-        if ($delete_accountt) {
+        if ($delete_account) {
             return json_encode(array('result' => 'success', 'message' => 'Account successfully deleted.'));
         }
     }

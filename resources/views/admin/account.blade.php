@@ -89,7 +89,28 @@
 
                 <div class="modal-footer">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <button id="btn-account-add" data-account-id="0" type="submit" class="btn btn-primary">Save</button>
+                    <button id="btn-add-account" type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade ml-auto mr-auto" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel2" aria-hidden="true" style="width:30%">
+    <div class="modal-dialog-lg" role="document">
+        <form id="form-password-reset">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel">Reset Password?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="btn btn-primary close" data-dismiss="modal">No</button>
+                    <button id="btn-password-reset" type="submit" class="btn btn-primary" data-dismiss="modal">Reset</button>
                 </div>
             </div>
         </form>

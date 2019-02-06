@@ -50,22 +50,6 @@ class RequestController extends Controller
         ]);
     }
 
-    public function Approve($id = 0, Request $request)
-    {
-        $updateRequest = Client_Request::where('id', $id)->update(['status' => "1"]);
-        if ($updateRequest) {
-            return json_encode([
-                'result' => 'success',
-                'message' => 'Successfully Updated!'
-            ]);
-        } else {
-            return json_encode([
-                'result' => 'failed',
-                'message' => 'Not success'
-            ]);
-        }
-    }
-    
     public function formAction()
     {
         $request = Input::get('status');
@@ -85,5 +69,21 @@ class RequestController extends Controller
     {
         foreach ($request as $requestId)
             Client_Request::findOrNew($requestId)->update(['status' => "0"]);
+    }
+
+    public function Approve($id = 0, Request $request)
+    {
+        $updateRequest = Client_Request::where('id', $id)->update(['status' => "1"]);
+        if ($updateRequest) {
+            return json_encode([
+                'result' => 'success',
+                'message' => 'Successfully Updated!'
+            ]);
+        } else {
+            return json_encode([
+                'result' => 'failed',
+                'message' => 'Not success'
+            ]);
+        }
     }
 }
