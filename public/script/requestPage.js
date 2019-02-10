@@ -84,7 +84,7 @@ function getAllRequest() {
                                     return data;
                                 } 
                                 else {
-                                    data = '<button id="btn-request-delete" type="button" onclick="getAllEmployee()" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#requestModal" class="btn btn-link btn-sm" >Deploy</button>'
+                                    data ='<button id="btn-request-delete" type="button" onclick="getAllEmployee()" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#requestModal" class="btn btn-link btn-sm" >Deploy</button>'
                                     return data;
                                 }
                             }
@@ -136,7 +136,7 @@ $(document).ready(function () {
                     alert("success");
                     $("#form-approve-request")[0].reset();
                     $("#btn-request-approve").prop("disabled", false);
-                    getAllEmployee();
+                    getAllRequest();
                 } else {
                     printErrorMsg(msg.error);
                     $("#btn-request-approve").prop("disabled", false);

@@ -19,8 +19,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body style="background-image: url('{{ asset('image/img(11).jpg') }}');background-repeat:no-repeat;
-background-attachment:fixed;background-position:center">
+<body style="background-image: url('{{ asset('image/bg1.jpg') }}');background-repeat:no-repeat;
+background-attachment:fixed;background-position:center;background-size:cover">
     <div id="app" class="app flex-row align-items-center">
         <div class="container">
             <div class="row justify-content-center">

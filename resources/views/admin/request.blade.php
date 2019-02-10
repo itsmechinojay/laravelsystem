@@ -62,7 +62,7 @@
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <button id="btn-request-approve" type="submit" class="btn btn-primary" data-dismiss="modal">Save</button>
+                    <button id="btn-request-approve" type="submit" class="btn btn-primary">Save</button>
                 </div>
             </div>
         </form>

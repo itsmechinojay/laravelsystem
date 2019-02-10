@@ -27,14 +27,13 @@
     <link rel="stylesheet" href="{{ asset('/css/dataTables.bootstrap4.min.css')}}" />
 </head>
 
-<body style="background-image: url('{{ asset('image/img(11).jpg') }}');background-repeat:no-repeat;
-            background-attachment:fixed;background-position:center">
+<body style="background-image: url('{{ asset('image/bg1.jpg') }}');background-repeat:no-repeat;
+            background-attachment:fixed;background-position:center;background-size:cover;">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel faded fixed-top " style="background-color:transparent">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel faded fixed-top" style="background-color:Light">
 
 
             <div class="container">
-
                 <img src="{{ asset('image/logo1.png')}}" class="img-fluid" style="width:20%">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

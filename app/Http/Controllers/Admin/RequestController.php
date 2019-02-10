@@ -32,7 +32,6 @@ class RequestController extends Controller
     }
     public function getAllEmployee()
     {
-
         $employee = DB::table('employee')
             ->where('Client', '=', 'Pending')
             ->get();
@@ -50,28 +49,28 @@ class RequestController extends Controller
         ]);
     }
 
-    public function formAction()
-    {
-        $request = Input::get('status');
-        if (Input::get('Approve')) {
-            $this->approveResquest($request);
-        } elseif (Input::get('Pending')) {
-            $this->pendingRequest($request);
-        }
-        return redirect('admin');
-    }
-    public function approveResquest($request)
-    {
-        foreach ($request as $requestId)
-            Client_Request::findOrNew($requestId)->update(['status' => "1"]);
-    }
-    public function pendingRequest($request)
-    {
-        foreach ($request as $requestId)
-            Client_Request::findOrNew($requestId)->update(['status' => "0"]);
-    }
+    // public function formAction()
+    // {
+    //     $request = Input::get('status');
+    //     if (Input::get('Approve')) {
+    //         $this->approveResquest($request);
+    //     } elseif (Input::get('Pending')) {
+    //         $this->pendingRequest($request);
+    //     }
+    //     return redirect('admin');
+    // }
+    // public function approveResquest($request)
+    // {
+    //     foreach ($request as $requestId)
+    //         Client_Request::findOrNew($requestId)->update(['status' => "1"]);
+    // }
+    // public function pendingRequest($request)
+    // {
+    //     foreach ($request as $requestId)
+    //         Client_Request::findOrNew($requestId)->update(['status' => "0"]);
+    // }
 
-    public function Approve($id = 0, Request $request)
+    public function Approved($id = 0, Request $request)
     {
         $updateRequest = Client_Request::where('id', $id)->update(['status' => "1"]);
         if ($updateRequest) {
