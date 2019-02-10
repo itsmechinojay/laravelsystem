@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Model\Employee;
+use App\Http\Model\Profile;
 use Validator;
 use App\User;
 use Illuminate\Support\Facades\Hash;
@@ -114,12 +115,30 @@ class EmployeeController extends Controller
                 'status' => '1',
             ]);
 
+            $newprofile = Profile::create([
+                'profilepic' => 'Pending',
+                'resume' => 'Pending',
+                'lastname' => $request['lastname'],
+                'firstname' => $request['firstname'],
+                'middlename' => $request['middlename'],
+                'position' => $request['position'],
+                'gender' => $request['gender'],
+                'bday' => $request['bday'],
+                'email' => $request['email'],
+                'address' => $request['address'],
+                'city' => $request['city'],
+                'contact' => $request['contact'],
+                'client' => 'Pending',
+                'status' => '1',
+            ]);
+
             $newAccount = User::create([
-                'name' => $request['Lastname'],
+                'name' => $request['lastname'],
                 'email' => $request['email'],
                 'password' => Hash::make(1234),
                 'type' => 'Employee',
             ]);
+
             if ($newemployee && $newAccount) {
 
                 return json_encode([

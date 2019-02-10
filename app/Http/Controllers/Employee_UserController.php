@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Model\Client;
 use App\Http\Model\Employee;
+use App\Http\Model\Profile;
 
 class Employee_UserController extends Controller
 {
@@ -27,12 +28,9 @@ class Employee_UserController extends Controller
      */
     public function index()
     {
-        $clients = DB::table('client')
-        ->paginate(500);
-        
-        $employees = DB::table('employee')
-        ->paginate(500);
-        
-        return view('employee_user',compact('clients','employees'));
+        $profiles = DB::table('profile')
+            ->paginate(500);
+
+        return view('employee/profile', compact('profiles'));
     }
 }

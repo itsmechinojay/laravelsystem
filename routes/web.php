@@ -76,5 +76,6 @@ Route::group(['middleware' => ['client'] && ['dev']], function () {
 
 
 //Employee User
-Route::get('/employee_user', 'Employee_UserController@index')->name('employee_user');
+// Route::get('/employee_user', 'Employee_UserController@index')->name('employee_user');
+Route::get('/profile', 'EmployeePage\ProfileController@index')->name('profile');
 

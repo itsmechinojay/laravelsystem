@@ -20,7 +20,7 @@
                         </li>
                         <div class="dropdown-divider"></div>
                         <li>
-                            {{ profile::profile()->client }}
+                            Client
                         </li>
                         <div class="dropdown-divider"></div>
                         <div class="dropdown-divider"></div>
@@ -42,4 +42,6 @@
         </div>
     </div>
 </div>
+
 @endsection
+

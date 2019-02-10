@@ -27,9 +27,10 @@
     <link rel="stylesheet" href="{{ asset('/css/dataTables.bootstrap4.min.css')}}" />
 </head>
 
-<body>
+<body style="background-image: url('{{ asset('image/img(11).jpg') }}');background-repeat:no-repeat;
+            background-attachment:fixed;background-position:center">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel faded">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel faded fixed-top " style="background-color:transparent">
 
 
             <div class="container">
@@ -57,7 +58,7 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="/">Home</span></a>
                             <li class="nav-item active">
-                                <a class="nav-link" href="/employee_user">Profile</a>
+                                <a class="nav-link" href="/profile">Profile</a>
                             </li>
                         </li>
 
@@ -148,7 +149,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4" style="margin-top:5%">
             @yield('content')
         </main>
     </div>

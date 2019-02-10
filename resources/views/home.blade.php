@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container rounded" style="background-color:white">
     <div class="form-group row">
         <img src="image/wsi_logo_1.jpg" class="mx-auto rounded shadow-lg" alt="Responsive image" style="width:100%;height:100%">
     </div>
