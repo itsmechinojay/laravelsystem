@@ -49,6 +49,15 @@ class RequestController extends Controller
         ]);
     }
 
+    
+    public function getEmployee(Employee $employee)
+    {
+        return json_encode([
+            'result' => 'success',
+            'employee' => $employee
+        ]);
+    }
+
     // public function formAction()
     // {
     //     $request = Input::get('status');
@@ -74,6 +83,23 @@ class RequestController extends Controller
     {
         $updateRequest = Client_Request::where('id', $id)->update(['status' => "1"]);
         if ($updateRequest) {
+            return json_encode([
+                'result' => 'success',
+                'message' => 'Successfully Updated!'
+            ]);
+        } else {
+            return json_encode([
+                'result' => 'failed',
+                'message' => 'Not success'
+            ]);
+        }
+    }
+
+    public function Deploy($id = 0, Request $request)
+    {
+
+        $updateEmployee = Employee::where('id', $id)->update(['status' => 'clientname']);
+        if ($updateEmployee) {
             return json_encode([
                 'result' => 'success',
                 'message' => 'Successfully Updated!'

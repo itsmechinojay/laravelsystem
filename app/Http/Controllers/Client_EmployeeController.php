@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Model\Client;
 use App\Http\Model\Employee;
+use Illuminate\Support\Facades\Auth;
 
 class Client_EmployeeController extends Controller
 {
@@ -27,12 +28,20 @@ class Client_EmployeeController extends Controller
      */
     public function index()
     {
-        $clients = DB::table('client')
-        ->paginate(500);
-        
-        $employees = DB::table('employee')
-        ->paginate(500);
-        
-        return view('client_employee',compact('clients','employees'));
+        return view('client_employee');
+    }
+
+
+    public function getAllEmployee()
+    {
+        $name =Auth::user()->name;
+
+        $employee = DB::table('employee')
+            ->where('client','=',$name)
+            ->get();
+        return json_encode([
+            'result' => 'success',
+            'employeelist' => $employee
+        ]);
     }
 }

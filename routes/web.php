@@ -50,8 +50,9 @@ Route::group(['middleware' => ['admin'] && ['dev']], function () {
     Route::get('admin/getallrequest', 'Admin\RequestController@getAllRequest');
     Route::get('admin/show/{employee}', 'Admin\RequestController@getRequest');
     Route::get('admin/getallemployee', 'Admin\RequestController@getAllEmployee');
-    Route::post('admin/action', array('uses' => 'RequestController@formAction'));
+    Route::get('admin/deploy', 'Admin\RequestController@Deploy');
     Route::post('admin/request/{id}', 'Admin\RequestController@Approved')->name('request.create');
+    // Route::post('admin/action', array('uses' => 'RequestController@formAction'));
 
     //Account
     Route::any('admin/account', 'Admin\AccountController@index')->name('admin.account');
@@ -66,7 +67,8 @@ Route::group(['middleware' => ['admin'] && ['dev']], function () {
 Route::group(['middleware' => ['client'] && ['dev']], function () {
     //Client User
     Route::any('/client_user', 'Client_UserController@index')->name('client_user');
-    Route::get('/client_employee', 'Client_EmployeeController@index')->name('client_employee');
+    Route::any('/client_employee', 'Client_EmployeeController@index')->name('client_employee');
+    Route::get('/client_employee/getallemployee', 'Client_EmployeeController@getAllEmployee');
     Route::get('/client_request', 'Client_RequestController@index')->name('client_request');
     Route::post('/client_request/add', 'Client_RequestController@requestClient');
     Route::get('/client_user/get_request' , 'Client_RequestController@getRequest');

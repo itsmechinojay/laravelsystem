@@ -45,7 +45,7 @@
                     @guest
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="/">Home</span></a>
+                            <a class="nav-link" href="/home">Home</span></a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="/about">About</a>
@@ -55,10 +55,10 @@
                     <ul class="navbar-nav mr-auto">
 
                         <li class="nav-item active">
-                            <a class="nav-link" href="/">Home</span></a>
-                            <li class="nav-item active">
-                                <a class="nav-link" href="/profile">Profile</a>
-                            </li>
+                            <a class="nav-link" href="/home">Home</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/profile">Profile</a>
                         </li>
 
                         @if (Auth::check() && Auth::user()->type == 'Admin')
@@ -86,7 +86,7 @@
                         @elseif (Auth::check() && Auth::user()->type =='Dev')
                         <!--Admin -->
                         <li class="nav-item active">
-                            <a class="nav-link" href="/admin/employee">Admin Employee</a>
+                            <a class="nav-link btn-hover" href="/admin/employee">Admin Employee</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="/admin/client">Admin Client</a>
