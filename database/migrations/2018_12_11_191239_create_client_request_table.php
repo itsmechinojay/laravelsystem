@@ -15,7 +15,7 @@ class CreateClientRequestTable extends Migration
     {
         Schema::create('client_request', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('client_id');
+            $table->string('client_id');
             $table->integer('status');
             $table->string('position');
             $table->string('description');

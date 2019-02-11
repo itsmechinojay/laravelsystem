@@ -5,6 +5,7 @@
         <thead>
             <tr>
                 <th>#</th>
+                <th>Client Name</th>
                 <th>Status</th>
                 <th>Job Request</th>
                 <th>Job Description</th>

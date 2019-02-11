@@ -36,6 +36,7 @@ class AccountController extends Controller
 
         return view('admin/account', compact('accounts'));
     }
+    
     public function getAllAccount()
     {
         $accountlist = User::all();

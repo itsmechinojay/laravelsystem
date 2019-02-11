@@ -88,6 +88,7 @@ function getAllRequest() {
                     responsive: true,
                     columns: [
                         { data: 'id' },
+                        { data: 'client_id' },
                         {
                             'render': function (data, type, full, meta) {
                                 if (full['status'] == 0) {
@@ -111,7 +112,9 @@ function getAllRequest() {
                                     return data;
                                 } 
                                 else {
-                                    data ='<button id="btn-request-delete" type="button" onclick="getAllEmployee()" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#requestModal" class="btn btn-link btn-sm" >Deploy</button>'
+                                    data ='<button id="btn-request-delete" type="button" onclick="getAllEmployee();getClientname(' +
+                                    full["client_id"] +
+                                    ')" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#requestModal" class="btn btn-link btn-sm" >Deploy</button>'
                                     return data;
                                 }
                             }
@@ -133,6 +136,16 @@ function getRequest(id) {
         var msg = JSON.parse(data);
         if (msg.result == "success") {
             $("#btn-request-approve").attr("data-request-id", id);
+        }
+    });
+}
+
+
+function getClientname(name) {
+    $.get("/admin/show/" + name, function (data) {
+        var msg = JSON.parse(data);
+        if (msg.result == "success") {
+            $("#btn-get-clientname").attr("data-request-name", name);
         }
     });
 }

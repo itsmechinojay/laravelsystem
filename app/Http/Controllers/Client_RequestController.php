@@ -36,7 +36,7 @@ class Client_RequestController extends Controller
     public function getRequest()
     {
         $request = DB::table('client_request')
-            ->where('client_id', '=', Auth::user()->id)
+            ->where('client_id', '=', Auth::user()->name)
             ->get();
         return json_encode([
             'result' => 'success',
@@ -46,8 +46,11 @@ class Client_RequestController extends Controller
 
     public function requestClient(Request $request)
     {
+        
+        $name =Auth::user()->clientname;
+
         $requestEmployee = Client_Request::create([
-            'client_id' => Auth::user()->id,
+            'client_id' => Auth::user()->name,
             'status' => 0,
             'position' => $request['position'],
             'description' => $request['description'],
