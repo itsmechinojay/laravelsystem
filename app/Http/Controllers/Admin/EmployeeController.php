@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Model\Employee;
 use App\Http\Model\Profile;
+use App\Http\Model\Messnoty;
 use Validator;
 use App\User;
 use Illuminate\Support\Facades\Hash;
@@ -138,6 +139,14 @@ class EmployeeController extends Controller
                 'password' => Hash::make(1234),
                 'type' => 'Employee',
             ]);
+
+            $newNot = Messnoty::create([
+                'sender' => Auth::user()->name,
+                'action' => ['New Request send by ', Auth::user()->name],
+                'sendto' => 'Admin',
+                'status' => 0,
+            ]);
+            
 
             if ($newemployee && $newAccount) {
 

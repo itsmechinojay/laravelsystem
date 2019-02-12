@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body style="background-image: url('{{ asset('image/bg1.jpg') }}');background-repeat:no-repeat;
+<body style="background-image: url('{{ asset('image/bg3.png') }}');background-repeat:no-repeat;
 background-attachment:fixed;background-position:center;background-size:cover">
     <div id="app" class="app flex-row align-items-center">
         <div class="container">

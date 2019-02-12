@@ -22,13 +22,6 @@ Route::get('/about', 'AboutController@index')->name('about');
 
 Route::group(['middleware' => ['admin'] && ['dev']], function () {
     //Employee
-
-    // Route::any('/admin/employee', 'Admin\EmployeeController@index')->name('admin.employee');
-    // Route::get('admin/show/{employee}', 'Admin\EmployeeController@index');
-    // Route::post('admin/employee/add/{id}',  'Admin\EmployeeController@index')->name('employee.create');
-    // Route::get('admin/employee/all', 'Admin\EmployeeController@index');
-    // Route::get('admin/employee/delete', 'Admin\EmployeeController@index');
-    
     Route::any('admin/employee', 'Admin\EmployeeController@index')->name('admin.employee');
     Route::get('admin/show/{employee}', 'Admin\EmployeeController@getEmployee');
     Route::post('admin/employee/add/{id}', 'Admin\EmployeeController@createEmployee')->name('employee.create');
@@ -52,8 +45,7 @@ Route::group(['middleware' => ['admin'] && ['dev']], function () {
     Route::get('admin/getallemployee', 'Admin\RequestController@getAllEmployee');
     Route::get('admin/deploy', 'Admin\RequestController@Deploy');
     Route::post('admin/request/{id}', 'Admin\RequestController@Approved')->name('request.create');
-    // Route::post('admin/action', array('uses' => 'RequestController@formAction'));
-
+    
     //Account
     Route::any('admin/account', 'Admin\AccountController@index')->name('admin.account');
     Route::get('admin/show/{users}', 'Admin\AccountController@getAccount');

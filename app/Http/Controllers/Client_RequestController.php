@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Model\Client_Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Model\Notify;
+use App\Http\Model\Messnoty;
 
 
 class Client_RequestController extends Controller
@@ -58,6 +59,13 @@ class Client_RequestController extends Controller
             'position' => $request['position'],
             'description' => $request['description'],
             'needed' => $request['needed']
+        ]);
+
+        $newNot = Messnoty::create([
+            'sender' => Auth::user()->name,
+            'action' => ['New Request send by ', Auth::user()->name],
+            'sendto' => 'Admin',
+            'status' => 0,
         ]);
         
 

@@ -32,22 +32,16 @@ class RequestController extends Controller
             'requestlist' => Client_Request::all()
         ]);
     }
+
+
     public function getAllEmployee()
     {
         $employee = DB::table('employee')
-            ->where('Client', '=', 'Pending')
+            ->where('Client' , 'Pending')
             ->get();
         return json_encode([
             'result' => 'success',
             'employeelist' => $employee
-        ]);
-    }
-
-    public function getRequest(Request $request)
-    {
-        return json_encode([
-            'result' => 'success',
-            'request' => $request
         ]);
     }
 
@@ -60,6 +54,13 @@ class RequestController extends Controller
         ]);
     }
 
+    public function getRequest(Request $request)
+    {
+        return json_encode([
+            'result' => 'success',
+            'request' => $request
+        ]);
+    }
 
     public function Approved($id = 0, Request $request)
     {
@@ -80,7 +81,6 @@ class RequestController extends Controller
 
     public function Deploy($id = 0, Request $request)
     {
-
         $updateEmployee = Employee::where('id', $id)->update(['status' => 'clientname']);
         if ($updateEmployee) {
             return json_encode([

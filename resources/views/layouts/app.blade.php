@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="{{ asset('/css/dataTables.bootstrap4.min.css')}}" />
 </head>
 
-<body style="background-image: url('{{ asset('image/bg1.jpg') }}');background-repeat:no-repeat;
+<body style="background-image: url('{{ asset('image/bg3.png') }}');background-repeat:no-repeat;
             background-attachment:fixed;background-position:center;background-size:cover;">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel faded fixed-top" style="background-color:Light">

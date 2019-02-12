@@ -22,9 +22,18 @@ function deployEmployee(id) {
     });
 }
 
+function getRequest(id) {
+    $.get("/admin/show/" + id, function (data) {
+        var msg = JSON.parse(data);
+        if (msg.result == "success") {
+            $("#btn-request-approve").attr("data-request-id", id);
+        }
+    });
+}
+
 function getAllEmployee() {
     $.ajax({
-        url: '/admin/getallemployee',
+        url: '/admin/getallemployee' ,
         type: "GET",
         contentType: false,
         cache: false,
@@ -50,7 +59,7 @@ function getAllEmployee() {
                         {
                             'render': function (data, type, full, meta) {
                                 data =
-                                '<button id="btn-employee-delete" type="button" onclick="deployEmployee(' +
+                                '<button id="btn-employee-deploy" type="button" onclick="deployEmployee(' +
                                 full["id"] +
                                 ');" class="btn btn-link btn-sm" >Deploy</button>';
                                 return data;
@@ -67,6 +76,7 @@ function getAllEmployee() {
         },
     });
 }
+
 
 function getAllRequest() {
     $.ajax({
@@ -112,9 +122,7 @@ function getAllRequest() {
                                     return data;
                                 } 
                                 else {
-                                    data ='<button id="btn-request-delete" type="button" onclick="getAllEmployee();getClientname(' +
-                                    full["client_id"] +
-                                    ')" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#requestModal" class="btn btn-link btn-sm" >Deploy</button>'
+                                    data ='<button id="btn-request-delete" type="button" onclick="getAllEmployee()" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#requestModal" class="btn btn-link btn-sm" >Deploy</button>'
                                     return data;
                                 }
                             }
@@ -131,24 +139,7 @@ function getAllRequest() {
     });
 }
 
-function getRequest(id) {
-    $.get("/admin/show/" + id, function (data) {
-        var msg = JSON.parse(data);
-        if (msg.result == "success") {
-            $("#btn-request-approve").attr("data-request-id", id);
-        }
-    });
-}
 
-
-function getClientname(name) {
-    $.get("/admin/show/" + name, function (data) {
-        var msg = JSON.parse(data);
-        if (msg.result == "success") {
-            $("#btn-get-clientname").attr("data-request-name", name);
-        }
-    });
-}
 
 $(document).ready(function () {
     getAllRequest();
