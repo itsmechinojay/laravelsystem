@@ -18,6 +18,7 @@ class CreateNotifyTable extends Migration
             $table->string('sender');
             $table->string('action');
             $table->string('sendto');
+            $table->string('status');
             $table->timestamps();
         });
     }

@@ -51,6 +51,7 @@ class Client_RequestController extends Controller
 
         $name = Auth::user()->clientname;
 
+
         $requestEmployee = Client_Request::create([
             'client_id' => Auth::user()->name,
             'status' => 0,
@@ -58,14 +59,9 @@ class Client_RequestController extends Controller
             'description' => $request['description'],
             'needed' => $request['needed']
         ]);
+        
 
         if ($requestEmployee) {
-
-            $newNotification = Notify::create([
-                'sender' => Auth::user()->name,
-                'action' => "Send A Request",
-                'sendto' => "Admin"
-            ]);
             return json_encode([
                 'result' => 'success',
                 'message' => 'Successfully Added!'

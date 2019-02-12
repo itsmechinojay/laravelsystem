@@ -6,8 +6,8 @@
         ADD REQUEST
     </button> {{-- <input class="rounded" type="text" placeholder="Search" style="margin-left:auto"> --}}
 
-    <table id="requestlist" class="display table-striped table-bordered dt-responsive nowrap" cellspacing="0" style="width:100%;margin-top:10px;text-align:center">
-        <thead>
+    <table id="requestlist" class="display table-striped table-bordered dt-responsive nowrap text-center" cellspacing="0" style="width:100%;margin-top:10px;background-color:ghostwhite">
+        <thead class="text-light" style="background-color:black">
             <tr>
                 <th>#</th>
                 <th>Status</th>

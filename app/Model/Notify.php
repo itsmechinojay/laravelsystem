@@ -8,12 +8,11 @@ class Notify extends Model
 {
     //
     protected $table = 'notify';
-    
     protected $primaryKey = 'id';
-
     protected $fillable = [
         'sender',
         'action',
         'sendto',
+        'status',
     ];
 }

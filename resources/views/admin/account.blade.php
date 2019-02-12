@@ -4,8 +4,8 @@
 
 <div class="container">
     <button type="button" id="btn-client-create" class="btn btn-link" data-toggle="modal" data-target="#addModal">Add Account</button>
-    <table id="accountlist" class="display table-striped table-bordered text-center" style="width:100%;">
-        <thead class="thead-dark                                                                                                                                                            ">
+    <table id="accountlist" class="display table-striped table-bordered text-center" style="width:100%;margin-top:10px;background-color:ghostwhite">
+        <thead class="text-light" style="background-color:black">                                                                                                                                                         ">
             <tr>
                 <th style="width:10px">#</th>
                 <th  style="width:50px">Employee Name/Client Name</th>

@@ -1,7 +1,7 @@
 @extends('layouts.app') 
 @section('content')
 <div class="row">
-    <div class="container col-1 " style="margin-left:2%;margin-top:6.3%">
+    <div class="container col-1 " style="margin-top:6.3%">
         <div class="btn-group-vertical" data-toggle="buttons">
             <button type="button" id="btn-employee-create" class="btn btn-primary " data-toggle="modal" data-target="#addModal">Add Employee</button>
             {{-- <div class="dropdown-divider"></div>
@@ -11,18 +11,16 @@
         </div>
     </div>
 
-    <div class="container col-10" style="margin-right:2%">
-        <table id="employeelist" class="display table-striped table-bordered text-center" style="width:100%;height:100%">
-            <thead>
+    <div class="container col-8" >
+        <table id="employeelist" class="display table-striped table-bordered text-center" style="margin-top:10px;background-color:ghostwhite">
+            <thead class="text-light" style="background-color:black">
                 <tr>
-                    <th style=>ID</th>
+                    <th style="width:50px">ID</th>
                     <th>Last Name</th>
                     <th>First Name</th>
                     <th style="width:15px">Middle Name</th>
                     <th>Position</th>
                     <th>Email</th>
-                    <th>Address</th>
-                    <th>City</th>
                     <th>Contact</th>
                     <th>Action</th>
                 </tr>

@@ -8,8 +8,8 @@
         </div>
     </div>
     <div class="container col-10">
-        <table id="clientlist" class="display text-center table-striped table-bordered" style="width:100%">
-            <thead>
+        <table id="clientlist" class="display text-center table-striped table-bordered text-center" style="width:100%;margin-top:10px;background-color:ghostwhite">
+            <thead class="text-light" style="background-color:black">
                 <tr>
                     <th>#</th>
                     <th>Client Name</th>

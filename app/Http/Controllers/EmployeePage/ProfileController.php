@@ -12,6 +12,7 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -34,45 +35,13 @@ class ProfileController extends Controller
 
     public function index()
     {
+        $name =Auth::user()->email;
+        
         $profiles = DB::table('profile')
-            ->paginate(500);
+            ->where('email','=',$name)
+            ->get();
 
         return view('profile', compact('profiles'));
-    }
-
-    /**
-     * Fetch user
-     * (You can extract this to repository method).
-     *
-     * @param $email
-     *
-     * @return mixed
-     */
-    public function getUserByEmail($email)
-    {
-        return User::with('profile')->wherename($name)->firstOrFail();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param string $name
-     *
-     * @return Response
-     */
-    public function show($email)
-    {
-        try {
-            $emai = $this->getUserByName($name);
-        } catch (ModelNotFoundException $exception) {
-            abort(404);
-        }
-        $currentClient = Profile::find($name->profile->client);
-        $data = [
-            'name' => $name,
-            'currentClient' => $currentClient,
-        ];
-        return view('profile')->with($data);
     }
 
 }

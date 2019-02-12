@@ -5,7 +5,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Model\Client_Request;
 use App\Http\Model\Employee;
+use App\Http\Model\Notify;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class RequestController extends Controller
 {
@@ -58,31 +60,12 @@ class RequestController extends Controller
         ]);
     }
 
-    // public function formAction()
-    // {
-    //     $request = Input::get('status');
-    //     if (Input::get('Approve')) {
-    //         $this->approveResquest($request);
-    //     } elseif (Input::get('Pending')) {
-    //         $this->pendingRequest($request);
-    //     }
-    //     return redirect('admin');
-    // }
-    // public function approveResquest($request)
-    // {
-    //     foreach ($request as $requestId)
-    //         Client_Request::findOrNew($requestId)->update(['status' => "1"]);
-    // }
-    // public function pendingRequest($request)
-    // {
-    //     foreach ($request as $requestId)
-    //         Client_Request::findOrNew($requestId)->update(['status' => "0"]);
-    // }
 
     public function Approved($id = 0, Request $request)
     {
         $updateRequest = Client_Request::where('id', $id)->update(['status' => "1"]);
         if ($updateRequest) {
+            
             return json_encode([
                 'result' => 'success',
                 'message' => 'Successfully Updated!'
