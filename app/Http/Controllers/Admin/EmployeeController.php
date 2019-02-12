@@ -90,7 +90,7 @@ class EmployeeController extends Controller
             'email' => 'required',
             'address' => 'required',
             'city' => 'required',
-            'contact' =>['required', 'string', 'max:255'],
+            'contact' =>'required',
         ]);
         if ($validation->fails()) {
             return json_encode([

@@ -39,7 +39,8 @@ class AccountController extends Controller
     
     public function getAllAccount()
     {
-        $accountlist = User::all();
+         $accountlist = User::where('type', '!=', 'dev')
+            ->get();
         return json_encode([
             'result' => 'success',
             'account' => $accountlist

@@ -26,7 +26,7 @@ class CreateProfileTable extends Migration
             $table->string('email')->unique();
             $table->string('address');
             $table->string('city');
-            $table->integer('contact');
+            $table->string('contact');
             $table->string('client');
             $table->string('status');
             $table->timestamps();

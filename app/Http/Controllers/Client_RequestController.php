@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Model\Client_Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Model\Notify;
+
 
 class Client_RequestController extends Controller
 {
@@ -46,8 +48,8 @@ class Client_RequestController extends Controller
 
     public function requestClient(Request $request)
     {
-        
-        $name =Auth::user()->clientname;
+
+        $name = Auth::user()->clientname;
 
         $requestEmployee = Client_Request::create([
             'client_id' => Auth::user()->name,
@@ -59,6 +61,11 @@ class Client_RequestController extends Controller
 
         if ($requestEmployee) {
 
+            $newNotification = Notify::create([
+                'sender' => Auth::user()->name,
+                'action' => "Send A Request",
+                'sendto' => "Admin"
+            ]);
             return json_encode([
                 'result' => 'success',
                 'message' => 'Successfully Added!'
@@ -68,6 +75,15 @@ class Client_RequestController extends Controller
                 'result' => 'failed',
                 'message' => 'Not success'
             ]);
+        }
+    }
+
+    public function deleteRequest(Request $request)
+    {
+        $request_id_array = $request->input('id');
+        $delete_request = Client_Request::where('id', $request_id_array)->delete();
+        if ($delete_request) {
+            return json_encode(array('result' => 'success', 'message' => 'employee successfully deleted.'));
         }
     }
 }

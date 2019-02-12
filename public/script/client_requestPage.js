@@ -1,3 +1,27 @@
+function deleteRequest(id) {
+    $.ajax({
+        url: "/client/request/delete",
+        type: "GET",
+        data: { id: id },
+        beforeSend: function () { },
+        error: function (data) {
+            if (data.readyState == 4) {
+                errors = JSON.parse(data.responseText);
+                $.each(errors, function (key, value) {
+                    console.log({ type: 2, text: value, time: 2 });
+                });
+            }
+        },
+        success: function (data) {
+            var msg = JSON.parse(data);
+            if (msg.result == "success") {
+                getRequest();
+            } else {
+            }
+        }
+    });
+}
+
 function getRequest() {
     $.ajax({
         url: '/client_user/get_request',
@@ -34,7 +58,7 @@ function getRequest() {
                         { data: 'needed' },
                         {
                             'render': function (data, type, full, meta) {
-                                data = '<button id="btn-client-delete" type="button" onclick="deleteClient(' + full['id'] + ');" class="btn btn-link btn-sm" >Delete</button>'
+                                data = '<button id="btn-client-delete" type="button" onclick="deleteRequest(' + full['id'] + ');" class="btn btn-link btn-sm" >Delete</button>'
                                 return data;
                             }
                         }
