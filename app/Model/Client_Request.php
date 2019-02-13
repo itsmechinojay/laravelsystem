@@ -17,5 +17,6 @@ class Client_Request extends Model
         'position',
         'description',
         'needed',
+        'request_status'
     ];
 }

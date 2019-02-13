@@ -1,23 +1,33 @@
 @extends('layouts.app') 
 @section('content')
-<div class="container">
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#addModal">
-        ADD REQUEST
-    </button> {{-- <input class="rounded" type="text" placeholder="Search" style="margin-left:auto"> --}}
 
-    <table id="requestlist" class="display table-striped table-bordered dt-responsive nowrap text-center" cellspacing="0" style="width:100%;margin-top:10px;background-color:ghostwhite">
-        <thead class="text-light" style="background-color:black">
-            <tr>
-                <th>#</th>
-                <th>Status</th>
-                <th>Job Request</th>
-                <th>Job Description</th>
-                <th>Number of Employee needed</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-    </table>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Request
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-2 border text-center">
+                    <button type="button" id="btn-employee-create" class="btn btn-link" data-toggle="modal" data-target="#addModal">Add Account</button>
+                </div>
+                <div class="table-responsive col-9">
+                    <table id="requestlist" class="table table-sm table-hover" cellspacing="0" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Status</th>
+                                <th>Job Request</th>
+                                <th>Job Description</th>
+                                <th>Number of Employee needed</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Modal -->

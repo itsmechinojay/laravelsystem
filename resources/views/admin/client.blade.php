@@ -1,28 +1,36 @@
 @extends('layouts.app') 
 @section('content')
 
-<div class="row">
-    <div class="container col-1 " style="margin-left:2%;margin-top:6.3%">
-        <div class="btn-group-vertical" data-toggle="buttons">
-            <button type="button" id="btn-client-create" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Create Client</button>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Client
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-2 border text-center">
+                    <button type="button" id="btn-client-create" class="btn btn-link" data-toggle="modal" data-target="#addModal">Add Account</button>
+                </div>
+                <div class="table-responsive col-9">
+                    <table id="clientlist" class="table table-sm table-hover" cellspacing="0" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Client Name</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>Contact</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="container col-10">
-        <table id="clientlist" class="display text-center table-striped table-bordered text-center" style="width:100%;margin-top:10px;background-color:ghostwhite">
-            <thead class="text-light" style="background-color:black">
-                <tr>
-                    <th>#</th>
-                    <th>Client Name</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th>City</th>
-                    <th>Contact</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-        </table>
-    </div>
 </div>
+
 <!-- Modal -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -102,9 +110,9 @@
                     <button id="btn-client-add" data-client-id="0" type="submit" class="btn btn-primary">Save</button>
                 </div>
             </div>
-            </div>
-        </form>
     </div>
+    </form>
+</div>
 </div>
 {{--
 <script>

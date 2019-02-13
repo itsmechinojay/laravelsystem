@@ -27,25 +27,65 @@ class RequestController extends Controller
     }
     public function getAllRequest()
     {
+        $request = Client_Request::where('request_status', 'O')->get();
         return json_encode([
             'result' => 'success',
-            'requestlist' => Client_Request::all()
+            'requestlist' => $request
         ]);
     }
 
 
-    public function getAllEmployee()
+    public function getAllEmployee($position)
     {
         $employee = DB::table('employee')
-            ->where('Client' , 'Pending')
+            ->select('id', 'lastname', 'firstname', 'middlename', 'email')
+            ->where('position', $position)
+            ->where('client', 'Pending')
             ->get();
+
         return json_encode([
             'result' => 'success',
             'employeelist' => $employee
         ]);
     }
 
-    
+    public function deployEmployee($employeeid, $clientname)
+    {
+        $deployEmployee = DB::table('employee')
+            ->where('id', $employeeid)
+            ->update(['client' => $clientname]);
+
+        if ($deployEmployee) {
+            return json_encode([
+                'result' => 'success',
+                'message' => 'Successfully Deploy'
+            ]);
+        } else {
+            return json_encode([
+                'result' => 'failed',
+                'message' => 'Something problem'
+            ]);
+        }
+    }
+
+    public function closeRequest($id)
+    {
+        $closeRequest = DB::table('client_request')
+            ->where('id', $id)
+            ->update(['request_status' => 'C']);
+        if ($closeRequest) {
+            return json_encode([
+                'result' => 'success',
+                'message' => 'Success close request'
+            ]);
+        } else {
+            return json_encode([
+                'result' => 'failed',
+                'message' => 'Something problem'
+            ]);
+        }
+    }
+
     public function getEmployee(Employee $employee)
     {
         return json_encode([
@@ -53,7 +93,7 @@ class RequestController extends Controller
             'employee' => $employee
         ]);
     }
-    
+
     public function getClient(Client_Request $client_request)
     {
         return json_encode([
@@ -64,6 +104,7 @@ class RequestController extends Controller
 
     public function getRequest(Request $request)
     {
+
         return json_encode([
             'result' => 'success',
             'request' => $request
@@ -72,9 +113,20 @@ class RequestController extends Controller
 
     public function Approved($id = 0, Request $request)
     {
+        $clientname = DB::table('client_request')
+            ->select('client_id')
+            ->where('id', $id)
+            ->get();
+
         $updateRequest = Client_Request::where('id', $id)->update(['status' => "1"]);
+        $newNoty = Notify::create([
+            'sender' => Auth::user()->name,
+            'action' => 'Approved Request',
+            'sendto' => $clientname,
+            'status' => 0
+        ]);
+
         if ($updateRequest) {
-            
             return json_encode([
                 'result' => 'success',
                 'message' => 'Successfully Updated!'
@@ -87,19 +139,4 @@ class RequestController extends Controller
         }
     }
 
-    public function Deploy($clientname = '',$employeemail = '')
-    {
-        $updateEmployee = Employee::where('email', $emloyeemail)->update(['client' => $clientname]);
-        if ($updateEmployee) {
-            return json_encode([
-                'result' => 'success',
-                'message' => 'Successfully Updated!'
-            ]);
-        } else {
-            return json_encode([
-                'result' => 'failed',
-                'message' => 'Not success'
-            ]);
-        }
-    }
 }

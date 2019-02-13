@@ -53,16 +53,18 @@ class Client_RequestController extends Controller
             'status' => 0,
             'position' => $request['position'],
             'description' => $request['description'],
-            'needed' => $request['needed']
+            'needed' => $request['needed'],
+            'request_status' => 'O'
+        ]);
+        
+        $newNot = Notify::create([
+            'sender' => Auth::user()->name,
+            'action' => 'New Request by Client',
+            'sendto' => 'Admin',
+            'status' => 1
         ]);
 
         if ($requestEmployee) {
-            $newNot = Notify::create([
-                'sender' => Auth::user()->name,
-                'action' => 'New Request by Client',
-                'sendto' => 'Admin',
-                'status' => 1
-            ]);
             return json_encode([
                 'result' => 'success',
                 'message' => 'Successfully Added!'

@@ -23,7 +23,6 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!--Data Table library -->
-    <link rel="stylesheet" href="{{ asset('/css/bootstrap2.css')}}">
     <link rel="stylesheet" href="{{ asset('/css/dataTables.bootstrap4.min.css')}}" />
 </head>
 
@@ -81,6 +80,9 @@
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="/client_request">Request</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/evaluation">Evaluation</a>
                         </li>
 
                         @elseif (Auth::check() && Auth::user()->type =='Dev')

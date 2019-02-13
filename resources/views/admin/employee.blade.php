@@ -1,33 +1,37 @@
 @extends('layouts.app') 
 @section('content')
-<div class="row">
-    <div class="container col-1 " style="margin-top:6.3%">
-        <div class="btn-group-vertical" data-toggle="buttons">
-            <button type="button" id="btn-employee-create" class="btn btn-primary " data-toggle="modal" data-target="#addModal">Add Employee</button>
-            {{-- <div class="dropdown-divider"></div>
-            <button type="button" class="btn btn-primary">All</button>
-            <button type="button" class="btn btn-primary" id="btn-deployed-employee">Deployed</button>
-            <button type="button" class="btn btn-primary">Undeployed</button> --}}
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Employee
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-2 border text-center">
+                    <button type="button" id="btn-employee-create" class="btn btn-link" data-toggle="modal" data-target="#addModal">Add Account</button>
+                </div>
+                <div class="table-responsive col-9">
+                    <table id="employeelist" class="table table-sm table-hover" cellspacing="0" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Last Name</th>
+                                <th>First Name</th>
+                                <th>Middle Name</th>
+                                <th>Position</th>
+                                <th>Email</th>
+                                <th>Contact</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="container col-8" >
-        <table id="employeelist" class="display table-striped table-bordered text-center" style="margin-top:10px;background-color:ghostwhite">
-            <thead class="text-light" style="background-color:black">
-                <tr>
-                    <th style="width:50px">ID</th>
-                    <th>Last Name</th>
-                    <th>First Name</th>
-                    <th style="width:15px">Middle Name</th>
-                    <th>Position</th>
-                    <th>Email</th>
-                    <th>Contact</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-        </table>
-    </div>
 </div>
+
 <!-- Modal -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -181,6 +185,7 @@
 {{--
 <script>
     move to employeePage.js
+
 </script> --}}
 
 <script src="{{ asset('script/employeePage.js')}}"></script>

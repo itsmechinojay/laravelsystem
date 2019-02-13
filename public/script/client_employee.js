@@ -13,7 +13,7 @@ function getAllEmployee() {
             var msg = JSON.parse(data);
             if (msg.result == 'success') {
                 console.log(msg.employeelist);
-                $('#employeelist').DataTable({
+                var table = $('#employeelist').DataTable({
                     processing: true,
                     data: msg.employeelist,
                     responsive: true,
@@ -35,6 +35,8 @@ function getAllEmployee() {
                         }
                     ]
                 });
+                var data = table.rows().data();
+                console.log(data);
             }
         },
         error: function (xhr, ajaxOptions, thrownError) { // if error occured

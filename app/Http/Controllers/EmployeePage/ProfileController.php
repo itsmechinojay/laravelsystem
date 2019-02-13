@@ -35,13 +35,24 @@ class ProfileController extends Controller
 
     public function index()
     {
-        $name =Auth::user()->email;
-        
+        $name = Auth::user()->email;
+
         $profiles = DB::table('profile')
-            ->where('email','=',$name)
+            ->where('email', '=', $name)
             ->get();
 
         return view('profile', compact('profiles'));
+    }
+
+    public function getProfile($id)
+    {
+        $profile = DB::table('profile')
+            ->where('id', $id)
+            ->get();
+            
+        return json_encode([
+            'profile' => $profile
+        ]);
     }
 
 }

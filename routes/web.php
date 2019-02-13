@@ -9,7 +9,7 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('auth/login');
@@ -26,8 +26,6 @@ Route::group(['middleware' => ['admin'] && ['dev']], function () {
     Route::get('admin/show/{employee}', 'Admin\EmployeeController@getEmployee');
     Route::post('admin/employee/add/{id}', 'Admin\EmployeeController@createEmployee')->name('employee.create');
     Route::get('admin/employee/all', 'Admin\EmployeeController@getAllEmployee');
-    Route::get('admin/employee/deployed', 'Admin\EmployeeController@getDeployedEmployee');
-    Route::get('admin/employee/pending', 'Admin\EmployeeController@getPendingEmployee');
     Route::get('admin/employee/delete', 'Admin\EmployeeController@deleteEmployee');
 
     //Client
@@ -42,9 +40,10 @@ Route::group(['middleware' => ['admin'] && ['dev']], function () {
     Route::any('/admin/request', 'Admin\RequestController@index')->name('admin.request');
     Route::get('admin/getallrequest', 'Admin\RequestController@getAllRequest');
     Route::get('admin/show/{employee}', 'Admin\RequestController@getRequest');
-    Route::get('admin/getallemployee', 'Admin\RequestController@getAllEmployee');
-    Route::get('admin/deploy/[{clientname},{employeemail}]', 'Admin\RequestController@Deploy');
+    Route::get('admin/getallemployee/{position}', 'Admin\RequestController@getAllEmployee');
     Route::post('admin/request/{id}', 'Admin\RequestController@Approved')->name('request.create');
+    Route::put('admin/request/update/{employeeid}/{clientname}', 'Admin\RequestController@deployEmployee');
+    Route::put('admin/request/closerequest/{id}', 'Admin\RequestController@closeRequest');
     
     //Account
     Route::any('admin/account', 'Admin\AccountController@index')->name('admin.account');
@@ -63,8 +62,12 @@ Route::group(['middleware' => ['client'] && ['dev']], function () {
     Route::get('/client_employee/getallemployee', 'Client_EmployeeController@getAllEmployee');
     Route::get('/client_request', 'Client_RequestController@index')->name('client_request');
     Route::post('/client_request/add', 'Client_RequestController@requestClient');
-    Route::get('/client_user/get_request' , 'Client_RequestController@getRequest');
+    Route::get('/client_user/get_request', 'Client_RequestController@getRequest');
     Route::get('client/request/delete', 'Client_RequestController@deleteRequest');
+    Route::any('/evaluation', 'EvaluationController@index')->name('client_user');
+    Route::post('/evaluation/addperiod', 'EvaluationController@addEvalPeriod');
+    Route::post('/evaluation/evaluateemployee', 'EvaluationController@evaluateEmployee');
+    Route::get('/evaluation/checkevaluation', 'EvaluationController@checkEvaluationDate');
 });
 
 
@@ -73,4 +76,5 @@ Route::group(['middleware' => ['client'] && ['dev']], function () {
 //Employee User
 // Route::get('/employee_user', 'Employee_UserController@index')->name('employee_user');
 Route::get('/profile', 'EmployeePage\ProfileController@index')->name('profile');
+Route::get('/employee/profile/{id}', 'EmployeePage\ProfileController@getProfile');
 

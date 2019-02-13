@@ -19,3 +19,4 @@ class Client extends Model
         'contact',
     ];
 }
+
