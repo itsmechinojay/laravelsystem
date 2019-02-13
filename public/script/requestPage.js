@@ -1,8 +1,8 @@
-function deployEmployee(id) {
+function Deploy(clientname,email) {
     $.ajax({
-        url: "/admin/deploy",
+        url: "/admin/deploy/" + $("#btn-employee-deploy").attr("data-request-client"), 
         type: "GET",
-        data: { id: id },
+        data: [{ clientname: clientname },{ email: email }],
         beforeSend: function () { },
         error: function (data) {
             if (data.readyState == 4) {
@@ -27,6 +27,15 @@ function getRequest(id) {
         var msg = JSON.parse(data);
         if (msg.result == "success") {
             $("#btn-request-approve").attr("data-request-id", id);
+        }
+    });
+}
+
+function getclient(clientname) {
+    $.get("/admin/show/" + clientname, function (data) {
+        var msg = JSON.parse(data);
+        if (msg.result == "success") {
+            $("#btn-employee-deploy").attr("data-request-client", clientname);
         }
     });
 }
@@ -59,8 +68,8 @@ function getAllEmployee() {
                         {
                             'render': function (data, type, full, meta) {
                                 data =
-                                '<button id="btn-employee-deploy" type="button" onclick="deployEmployee(' +
-                                full["id"] +
+                                '<button id="btn-employee-deploy" type="button" onclick="deployEmployee(,' +
+                                full["email"] +
                                 ');" class="btn btn-link btn-sm" >Deploy</button>';
                                 return data;
                             }

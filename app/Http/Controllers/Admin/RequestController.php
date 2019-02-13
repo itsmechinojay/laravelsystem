@@ -53,6 +53,14 @@ class RequestController extends Controller
             'employee' => $employee
         ]);
     }
+    
+    public function getClient(Client_Request $client_request)
+    {
+        return json_encode([
+            'result' => 'success',
+            'employee' => $client_request
+        ]);
+    }
 
     public function getRequest(Request $request)
     {
@@ -79,9 +87,9 @@ class RequestController extends Controller
         }
     }
 
-    public function Deploy($id = 0, Request $request)
+    public function Deploy($clientname = '',$employeemail = '')
     {
-        $updateEmployee = Employee::where('id', $id)->update(['status' => 'clientname']);
+        $updateEmployee = Employee::where('email', $emloyeemail)->update(['client' => $clientname]);
         if ($updateEmployee) {
             return json_encode([
                 'result' => 'success',

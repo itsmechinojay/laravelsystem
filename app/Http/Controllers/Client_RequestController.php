@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Model\Client_Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Model\Notify;
-use App\Http\Model\Messnoty;
 
 
 class Client_RequestController extends Controller
@@ -49,10 +48,6 @@ class Client_RequestController extends Controller
 
     public function requestClient(Request $request)
     {
-
-        $name = Auth::user()->clientname;
-
-
         $requestEmployee = Client_Request::create([
             'client_id' => Auth::user()->name,
             'status' => 0,
@@ -61,15 +56,13 @@ class Client_RequestController extends Controller
             'needed' => $request['needed']
         ]);
 
-        $newNot = Messnoty::create([
-            'sender' => Auth::user()->name,
-            'action' => ['New Request send by ', Auth::user()->name],
-            'sendto' => 'Admin',
-            'status' => 0,
-        ]);
-        
-
         if ($requestEmployee) {
+            $newNot = Notify::create([
+                'sender' => Auth::user()->name,
+                'action' => 'New Request by Client',
+                'sendto' => 'Admin',
+                'status' => 1
+            ]);
             return json_encode([
                 'result' => 'success',
                 'message' => 'Successfully Added!'
