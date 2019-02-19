@@ -12,7 +12,7 @@
  */
 
 Route::get('/', function () {
-    return view('auth/login');
+    return view('home');
 });
 
 Auth::routes();
@@ -53,6 +53,7 @@ Route::group(['middleware' => ['admin'] && ['dev']], function () {
     Route::get('admin/account/all', 'Admin\AccountController@getAllAccount');
     Route::get('admin/account/delete', 'Admin\AccountController@deleteAccount');
     Route::post('admin/reset/{id}', 'Admin\AccountController@resetPassword')->name('reset.create');
+    Route::put('admin/updateaccount/{id}', 'Admin\AccountController@updateAccount');
 });
 
 Route::group(['middleware' => ['client'] && ['dev']], function () {
@@ -70,6 +71,7 @@ Route::group(['middleware' => ['client'] && ['dev']], function () {
     Route::get('/evaluation/checkevaluation', 'EvaluationController@checkEvaluationDate');
 });
 
+    Route::any('/notify', 'NotifyController@index')->name('notify');
 
 
 
@@ -77,4 +79,6 @@ Route::group(['middleware' => ['client'] && ['dev']], function () {
 // Route::get('/employee_user', 'Employee_UserController@index')->name('employee_user');
 Route::get('/profile', 'EmployeePage\ProfileController@index')->name('profile');
 Route::get('/employee/profile/{id}', 'EmployeePage\ProfileController@getProfile');
+Route::get('/deployment_history', 'EmployeePage\ClienthistoryController@getHistory');
+Route::get('/deploymenthistory', 'EmployeePage\ClienthistoryController@index')->name('history');
 

@@ -2,8 +2,8 @@
 @section('auth')
 <div style="margin-top:8%;" class="shadow-lg">
     <div class="card-group">
-        <div class="card" style="background-color: transparent">
-            <div class="card-body p-5 rounded" style="background-color:transparent">
+        <div class="card">
+            <div class="card-body p-5 rounded">
                 
                 <div class="text-center">
                     <img src="{{ asset('image/logo1.png')}}" class="mb-5" width="100%" alt="Modulr Logo">
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary px4">
+                        <button type="submit" class="btn btn-primary px4">
                                     {{ __('Login') }}
                                 </button>
                         </div>

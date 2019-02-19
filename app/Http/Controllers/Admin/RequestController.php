@@ -56,6 +56,12 @@ class RequestController extends Controller
             ->update(['client' => $clientname]);
 
         if ($deployEmployee) {
+            $newNoty = Notify::create([
+                'sender' => Auth::user()->name,
+                'action' => 'Deployed Employee',
+                'sendto' => $clientname,
+                'status' => 1
+            ]);
             return json_encode([
                 'result' => 'success',
                 'message' => 'Successfully Deploy'
@@ -104,7 +110,6 @@ class RequestController extends Controller
 
     public function getRequest(Request $request)
     {
-
         return json_encode([
             'result' => 'success',
             'request' => $request
@@ -123,7 +128,7 @@ class RequestController extends Controller
             'sender' => Auth::user()->name,
             'action' => 'Approved Request',
             'sendto' => $clientname,
-            'status' => 0
+            'status' => 1
         ]);
 
         if ($updateRequest) {

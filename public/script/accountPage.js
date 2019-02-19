@@ -49,9 +49,7 @@ function getAllAccount() {
                         {
                             render: function (data, type, full, meta) {
                                 data =
-                                    '<button id="btn-account-view" type="button" onclick="getPassword(' +
-                                    full["id"] +
-                                    ');"  data-backdrop="static" data-toggle="modal" data-target="#resetModal" data-keyboard="false"  class="btn btn-link btn-sm" >Reset Password</button>||<button id="btn-account-delete" type="button" onclick="deleteAccount(' +
+                                    '<button class="btn btn-link" id="btn-update-password" type="button" onclick="updateAccount(' + full['id'] + ');">Reset Password</button>||<button id="btn-account-delete" type="button" onclick="deleteAccount(' +
                                     full["id"] +
                                     ');" class="btn btn-link btn-sm" >Delete</button>';
                                 return data;
@@ -78,16 +76,37 @@ function getAccount(id) {
     });
 }
 
-function getPassword(id) {
-    $.get("/admin/password/" + id, function (data) {
-        var msg = JSON.parse(data);
-        if (msg.result == "success") {
-            $("#btn-password-reset").attr("data-account-id", id);
-        }
+
+function updateAccount(id) {
+    $.ajax({
+        url: 'updateaccount/' + id,
+        headers:
+        {
+            'X-CSRF-Token': $('input[name="_token"]').val()
+        },
+        type: "PUT",
+        contentType: false,
+        cache: false,
+        processData: false,
+        beforeSend: function (xhr) {
+
+        },
+        success: function (data) {
+            var msg = JSON.parse(data);
+            if (msg.result == 'success') {
+                alert('Password Successfully Reset To Default');
+                getAllAccount();
+            } else {
+                printErrorMsg(msg.error);
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) { // if error occured
+            console.log("Error: " + thrownError);
+        },
+        complete: function () {
+        },
     });
 }
-
-
 
 $(document).ready(function () {
     $("#btn-account-create").click(function () {

@@ -7,11 +7,11 @@
             Account
         </div>
         <div class="card-body">
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-2 border text-center">
                     <button type="button" id="btn-account-create" class="btn btn-link" data-toggle="modal" data-target="#addModal">Add Account</button>
-                </div>
-                <div class="table-responsive col-9">
+                </div> --}}
+                <div class="table-responsive">
                     <table id="accountlist" class="table table-sm table-hover" cellspacing="0" style="width:100%">
                         <thead>
                             <tr>
@@ -24,7 +24,7 @@
                         </thead>
                     </table>
                 </div>
-            </div>
+            {{-- </div> --}}
         </div>
     </div>
 </div>

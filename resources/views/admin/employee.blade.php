@@ -163,7 +163,7 @@
 
                     <div class="form-group row">
                         <div class="form-group col-8">
-                            <label>Email Address<a class="font-small">(Prepared email for Login)</a></label>
+                            <label>Email Address<a class="font-small">(Preferred email for Login)</a></label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="Example@wesupportinc.com">
                         </div>
                         <div class="form-group col-4">

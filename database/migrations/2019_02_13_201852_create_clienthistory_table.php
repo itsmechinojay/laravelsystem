@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEvaluationTable extends Migration
+class CreateClienthistoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateEvaluationTable extends Migration
      */
     public function up()
     {
-        Schema::create('evaluation', function (Blueprint $table) {
+        Schema::create('clienthistory', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('employee_name');
+            $table->string('lastname');
+            $table->string('firstname');
+            $table->string('middlename');
+            $table->string('email');
+            $table->string('pastcompany');
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ class CreateEvaluationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('evaluation');
+        Schema::dropIfExists('clienthistory');
     }
 }

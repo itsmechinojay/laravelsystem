@@ -9,7 +9,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-2 border text-center">
-                    <button type="button" id="btn-employee-create" class="btn btn-link" data-toggle="modal" data-target="#addModal">Add Account</button>
+                    <button type="button" id="btn-employee-create" class="btn btn-link" data-toggle="modal" data-target="#addModal">Add Request</button>
                 </div>
                 <div class="table-responsive col-9">
                     <table id="requestlist" class="table table-sm table-hover" cellspacing="0" style="width:100%">

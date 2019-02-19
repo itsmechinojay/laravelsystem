@@ -93,6 +93,28 @@ class AccountController extends Controller
         }
     }
 
+    public function changePassword($id){
+        
+    }
+
+    public function updateAccount($id)
+    {
+        $closeRequest = DB::table('users')
+            ->where('id', $id)
+            ->update(['password' => Hash::make(1234)]);
+        if ($closeRequest) {
+            return json_encode([
+                'result' => 'success',
+                'message' => 'Success update password'
+            ]);
+        } else {
+            return json_encode([
+                'result' => 'failed',
+                'message' => 'Something problem'
+            ]);
+        }
+    }
+
     public function getPassword(User $user)
     {
         return json_encode([

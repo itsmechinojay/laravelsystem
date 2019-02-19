@@ -53,14 +53,11 @@
                     @else
                     <ul class="navbar-nav mr-auto">
 
+                        @if (Auth::check() && Auth::user()->type == 'Admin')
+
                         <li class="nav-item active">
                             <a class="nav-link" href="/home">Home</span></a>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/profile">Profile</a>
-                        </li>
-
-                        @if (Auth::check() && Auth::user()->type == 'Admin')
                         <li class="nav-item active">
                             <a class="nav-link" href="/admin/employee">Employee</a>
                         </li>
@@ -73,8 +70,21 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="/admin/account">Account</a>
                         </li>
+                        {{-- <li class="nav-item active">
+                            <a class="nav-link" href="/evaluation">Evaluation</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/notify">Notification</a>
+                        </li> --}}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/about">About</a>
+                        </li>
 
                         @elseif (Auth::check() && Auth::user()->type =='Client')
+
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/home">Home</span></a>
+                        </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="/client_employee">Employee</a>
                         </li>
@@ -84,8 +94,17 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="/evaluation">Evaluation</a>
                         </li>
+                        {{-- <li class="nav-item active">
+                            <a class="nav-link" href="/notify">Notification</a>
+                        </li> --}}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/about">About</a>
+                        </li>
 
                         @elseif (Auth::check() && Auth::user()->type =='Dev')
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/home">Home</span></a>
+                        </li>
                         <!--Admin -->
                         <li class="nav-item active">
                             <a class="nav-link btn-hover" href="/admin/employee">Admin Employee</a>
@@ -106,13 +125,21 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="/client_request">Client Request</a>
                         </li>
-                        <!-- Employee-->
-
-                        @endif
-
                         <li class="nav-item active">
                             <a class="nav-link" href="/about">About</a>
                         </li>
+                        <!-- Employee-->
+
+                        @elseif (Auth::check() && Auth::user()->type =='Employee')
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/profile">Profile</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/deploymenthistory">Deployment History</a>
+                        </li>
+
+                        @endif
+
                     </ul>
                     @endguest
 
@@ -161,6 +188,7 @@
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{ asset('script/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{ asset('script/dataTables.min.js')}}"></script>
+
 </body>
 
 </html>
