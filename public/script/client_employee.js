@@ -12,10 +12,10 @@ function getAllEmployee() {
         success: function (data) {
             var msg = JSON.parse(data);
             if (msg.result == 'success') {
-                console.log(msg.employeelist);
+                console.log(msg.employee);
                 var table = $('#employeelist').DataTable({
                     processing: true,
-                    data: msg.employeelist,
+                    data: msg.employee,
                     responsive: true,
                     columns: [
                         { data: 'id' },

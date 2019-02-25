@@ -78,6 +78,7 @@ Route::group(['middleware' => ['client'] && ['dev']], function () {
     Route::get('/client_request', 'Client_RequestController@index')->name('client_request');
     Route::post('/client_request/add', 'Client_RequestController@requestClient');
     Route::get('/client_user/get_request', 'Client_RequestController@getRequest');
+    
     Route::get('client/request/delete', 'Client_RequestController@deleteRequest');
     Route::any('/evaluation', 'EvaluationController@index')->name('client_user');
     Route::post('/evaluation/addperiod', 'EvaluationController@addEvalPeriod');

@@ -39,7 +39,7 @@ class RequestController extends Controller
     {
         $employee = DB::table('employee')
             ->select('id', 'lastname', 'firstname', 'middlename', 'email')
-            ->where('position', $position)
+            ->where('position','=', $position)
             ->where('client', 'Pending')
             ->get();
 

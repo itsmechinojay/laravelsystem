@@ -36,12 +36,12 @@ class Client_EmployeeController extends Controller
     {
         $name =Auth::user()->name;
 
-        $employee = DB::table('employee')
+        $employeelist = DB::table('employee')
             ->where('client','=',$name)
             ->get();
         return json_encode([
             'result' => 'success',
-            'employeelist' => $employee
+            'employee' => $employeelist
         ]);
     }
 }

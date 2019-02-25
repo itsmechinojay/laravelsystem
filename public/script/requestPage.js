@@ -133,7 +133,7 @@ function getAllRequest() {
                                     return data;
                                 }
                                 else {
-                                    data = '<button id="btn-request-delete" type="button" onclick="getAllEmployee(\'' + full["position"] + '\',\'' + full["client_id"] + '\');" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#requestModal" class="btn btn-link btn-sm" >Deploy</button> ||    '
+                                    data = '<button id="btn-request-delete" type="button" onclick="getAllEmployee(\'' + full["position"] + '\',\'' + full["client_id"] + '\');" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#requestModal" class="btn btn-link btn-sm" >Deploy</button> || <button class="btn btn-link" id="btn-request-delete" type="button" onclick="closeRequest(' + full['id'] + ');">Close</button>'
                                     return data;
                                 }
                             }
