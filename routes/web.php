@@ -21,6 +21,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/about', 'AboutController@index')->name('about');
 
 Route::group(['middleware' => ['admin'] && ['dev']], function () {
+
+    
+    Route::get('/admin/evaluationlist/all', 'EvaluationController@getAllEvaluation');
+
+    Route::any('/notify', 'NotifyController@index')->name('notify');
+    Route::get('/admin/notify/all', 'NotifyController@getAllNotify');
+    Route::get('/admin/clientnotify/all', 'NotifyController@getAllClientNotify');
+    Route::post('/deletenotify/{id}', 'NotifyController@deleteNotify')->name('notify.create');
+
     //Employee
     Route::any('admin/employee', 'Admin\EmployeeController@index')->name('admin.employee');
     Route::get('admin/show/{employee}', 'Admin\EmployeeController@getEmployee');
@@ -58,6 +67,11 @@ Route::group(['middleware' => ['admin'] && ['dev']], function () {
 
 Route::group(['middleware' => ['client'] && ['dev']], function () {
     //Client User
+    
+    Route::any('/notify', 'NotifyController@index')->name('notify');
+    Route::get('/admin/notify/all', 'NotifyController@getAllNotify');
+    Route::get('/admin/clientnotify/all', 'NotifyController@getAllClientNotify');
+    Route::post('/notify/{id}', 'NotifyController@deleteNotify')->name('notify.create');
     Route::any('/client_user', 'Client_UserController@index')->name('client_user');
     Route::any('/client_employee', 'Client_EmployeeController@index')->name('client_employee');
     Route::get('/client_employee/getallemployee', 'Client_EmployeeController@getAllEmployee');
@@ -71,7 +85,6 @@ Route::group(['middleware' => ['client'] && ['dev']], function () {
     Route::get('/evaluation/checkevaluation', 'EvaluationController@checkEvaluationDate');
 });
 
-    Route::any('/notify', 'NotifyController@index')->name('notify');
 
 
 

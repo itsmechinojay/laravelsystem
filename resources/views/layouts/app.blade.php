@@ -70,12 +70,12 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="/admin/account">Account</a>
                         </li>
-                        {{-- <li class="nav-item active">
+                        <li class="nav-item active">
                             <a class="nav-link" href="/evaluation">Evaluation</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="/notify">Notification</a>
-                        </li> --}}
+                        </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="/about">About</a>
                         </li>
@@ -94,9 +94,9 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="/evaluation">Evaluation</a>
                         </li>
-                        {{-- <li class="nav-item active">
+                        <li class="nav-item active">
                             <a class="nav-link" href="/notify">Notification</a>
-                        </li> --}}
+                        </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="/about">About</a>
                         </li>

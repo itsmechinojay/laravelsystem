@@ -87,4 +87,14 @@ class EvaluationController extends Controller
             ]);
         }
     }
+
+    public function getAllEvaluation()
+    {
+        $evaluationlist = Evaluation::all();
+
+        return json_encode([
+            'result' => 'success',
+            'notify' => $evaluationlist
+        ]);
+    }
 }

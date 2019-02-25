@@ -72,10 +72,10 @@ class AccountController extends Controller
         }
         if ($id == 0) {
             return User::create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => Hash::make($data['password']),
-                'type' => $data['type'],
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+                'type' => $request['type'],
             ]);
         } else {
             $updateAccount = User::where('id', $id)->update('password'->Hash::make(1234));

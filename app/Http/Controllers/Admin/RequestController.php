@@ -56,7 +56,7 @@ class RequestController extends Controller
             ->update(['client' => $clientname]);
 
         if ($deployEmployee) {
-            $newNoty = Notify::create([
+            Notify::create([
                 'sender' => Auth::user()->name,
                 'action' => 'Deployed Employee',
                 'sendto' => $clientname,
@@ -124,14 +124,14 @@ class RequestController extends Controller
             ->get();
 
         $updateRequest = Client_Request::where('id', $id)->update(['status' => "1"]);
-        $newNoty = Notify::create([
-            'sender' => Auth::user()->name,
-            'action' => 'Approved Request',
-            'sendto' => $clientname,
-            'status' => 1
-        ]);
-
+       
         if ($updateRequest) {
+            Notify::create([
+                'sender' => Auth::user()->name,
+                'action' => 'Approved Request',
+                'sendto' => $clientname,
+                'status' => 1
+            ]);
             return json_encode([
                 'result' => 'success',
                 'message' => 'Successfully Updated!'
@@ -143,5 +143,5 @@ class RequestController extends Controller
             ]);
         }
     }
-
 }
+

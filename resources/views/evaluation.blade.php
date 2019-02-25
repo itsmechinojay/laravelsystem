@@ -1,5 +1,33 @@
 @extends('layouts.app') 
 @section('content')
+
+
+@if (Auth::check() && Auth::user()->type == 'Admin')
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Notify
+        </div>
+        <div class="card-body">
+            <div class="table-responsive ">
+                <table id="evaluationlist" class="table table-sm table-hover" cellspacing="0" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Full Name</th>
+                            <th class="text-center">Rating</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@elseif (Auth::check() && Auth::user()->type =='Client')
+
 <div class="container">
     <div class="card">
         <div class="card-header">
@@ -28,6 +56,9 @@
         </div>
     </div>
 </div>
+
+@endif
+
 <script>
     $(document).ready(function() {
         getEmployee();
@@ -36,6 +67,52 @@
     $('#evaluate-save').click(function(){
         addEvaluatePeriod();
     });
+
+    function getAllEvaluation() {
+    $.ajax({
+        url: "/admin/evaluationlist/all",
+        type: "GET",
+        contentType: false,
+        cache: false,
+        processData: false,
+        beforeSend: function () {
+            $("#evaluationlist")
+                .DataTable()
+                .destroy();
+        },
+        success: function (data) {
+            var msg = JSON.parse(data);
+            if (msg.result == "success") {
+                console.log(msg.notify);
+                $("#evaluationlist").DataTable({
+                    processing: true,
+                    data: msg.notify,
+                    responsive: true,
+                    columns: [
+                        { data: "id" },
+                        { data: "emp_id" },
+                        { data: "rating" },
+                        {
+                            render: function (data, type, full, meta) {
+                                data =
+                                    '<button id="btn-account-delete" type="button" onclick="deleteNotify(' +
+                                    full["id"] +
+                                    ');" class="btn btn-link btn-sm" >Mark as Read</button>';
+                                return data;
+                            }
+                        }
+                    ]
+                });
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            // if error occured
+            console.log("Error: " + thrownError);
+        },
+        complete: function () { }
+    });
+}
+
     function addEvaluatePeriod(){
         var result = 0;
         $.ajax({
@@ -97,6 +174,7 @@
         },
     });
     }
+
     function checkEvaluationDate(){
         $.ajax({
         url: '/evaluation/checkevaluation',

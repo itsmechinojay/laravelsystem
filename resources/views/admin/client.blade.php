@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Client E-Mail Address') }}</label>
 
                         <div class="col-md-6">
                             <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}"
@@ -69,7 +69,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+                        <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Client Address') }}</label>
 
                         <div class="col-md-6">
                             <input id="address" type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" value="{{ old('address') }}"
@@ -81,7 +81,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
+                        <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('Client City') }}</label>
 
                         <div class="col-md-6">
                             <input id="city" type="text" class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}" name="city" value="{{ old('city') }}"
@@ -93,7 +93,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="contact" class="col-md-4 col-form-label text-md-right">{{ __('Contact') }}</label>
+                        <label for="contact" class="col-md-4 col-form-label text-md-right">{{ __('Client Contact') }}</label>
 
                         <div class="col-md-6">
                             <input id="contact" type="text" class="form-control{{ $errors->has('contact') ? ' is-invalid' : '' }}" name="contact" value="{{ old('contact') }}"

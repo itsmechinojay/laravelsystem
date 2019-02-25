@@ -10,7 +10,7 @@ use App\Http\Model\Notify;
 
 class NotifyController extends Controller
 {
-     //
+    //
     /**
      * Create a new controller instance.
      *
@@ -31,24 +31,43 @@ class NotifyController extends Controller
         return view('notify');
     }
 
-    public function databaseCount(Request $request)
+    public function getAllNotify()
     {
-        $count = DB::table('notify')
-            ->where('status', 1)
-            ->where('sendto', 'Admin')
-            ->count();
+        $notifylist = Notify::where('status', '1')->where('sendto', 'Admin')->get();
+
         return json_encode([
             'result' => 'success',
-            'count' => $count
+            'notify' => $notifylist
         ]);
     }
 
-    public function getAllNotify()
+    public function getAllClientNotify()
     {
-        $request = Notify::where('status', '1')->get();
+        $name = Auth::user()->name;
+
+        $clientnotifylist = DB::table('notify')
+            ->where('status', '1')
+            ->where('sendto', '=', $name)
+            ->get();
         return json_encode([
             'result' => 'success',
-            'notifylist' => $request
+            'notify' => $clientnotifylist
         ]);
+    }
+
+    public function deleteNotify($id = 0, Request $request)
+    {
+        $updateNotify = Notify::where('id', $id)->update(['status' => "0"]);
+        if ($updateNotify) {
+            return json_encode([
+                'result' => 'success',
+                'message' => 'Successfully Mark as Read!'
+            ]);
+        } else {
+            return json_encode([
+                'result' => 'failed',
+                'message' => 'Not success'
+            ]);
+        }
     }
 }
