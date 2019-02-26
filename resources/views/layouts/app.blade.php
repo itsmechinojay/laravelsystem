@@ -120,7 +120,7 @@
                         </li>
                         <!--Client -->
                         <li class="nav-item active">
-                            <a class="nav-link" href="/client_employee">Client Employee</a>
+                            <a class="nav-link" href="/client_employee">Client Employee </a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="/client_request">Client Request</a>

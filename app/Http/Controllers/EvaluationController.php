@@ -94,7 +94,7 @@ class EvaluationController extends Controller
 
         return json_encode([
             'result' => 'success',
-            'notify' => $evaluationlist
+            'evaluation' => $evaluationlist
         ]);
     }
 }
