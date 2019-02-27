@@ -16,7 +16,7 @@
                             <div class="form-row">
                                 <div class="form-group col">
                                     <label>Last Name</label>
-                                <input type="text" class="form-control" id="lastname" placeholder="Last Name">
+                                <input type="text" class="form-control" id="lastname" placeholder="Last Name" val="">
                                 </div>
                                 <div class="form-group col">
                                     <label>First Name</label>

@@ -1,5 +1,6 @@
 $(document).ready(function() {
     getEmployee();
+    getAllEvaluation();
     //checkEvaluationDate();
 });
 $('#evaluate-save').click(function(){
@@ -140,6 +141,7 @@ function checkEvaluationDate(){
     },
 });
 }
+
 function evaluateEmployee(argdata){
     $.ajax({
         url:
@@ -165,6 +167,7 @@ function evaluateEmployee(argdata){
         }
     });
 }
+
 function getEmployee(){
 $.ajax({
     url: '/client_employee/getallemployee',

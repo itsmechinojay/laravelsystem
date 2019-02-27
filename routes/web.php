@@ -19,7 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/about', 'AboutController@index')->name('about');
-Route::get('/layout/app/', 'NotifyController@getAdminNotyCount')->name('app.Admincount');
+Route::get('/count', 'NotifyController@getAdminNotyCount');
+Route::get('/count/client', 'NotifyController@getClientNotyCount');
 
 Route::group(['middleware' => ['admin'] && ['dev']], function () {
 
@@ -93,7 +94,7 @@ Route::group(['middleware' => ['client'] && ['dev']], function () {
 //Employee User
 // Route::get('/employee_user', 'Employee_UserController@index')->name('employee_user');
 Route::get('/profile', 'EmployeePage\ProfileController@index')->name('profile');
-Route::get('/employee/profile/{id}', 'EmployeePage\ProfileController@getProfile');
+Route::get('/employee/profile/{email}', 'EmployeePage\ProfileController@getProfile');
 Route::get('/deployment_history', 'EmployeePage\ClienthistoryController@getHistory');
 Route::get('/deploymenthistory', 'EmployeePage\ClienthistoryController@index')->name('history');
 

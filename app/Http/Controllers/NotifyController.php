@@ -57,11 +57,26 @@ class NotifyController extends Controller
 
     public function getAdminNotyCount()
     {
-        $Adminnotycount = Notify::where('status', '1')
-            ->where('sendto', 'Admin')
-            ->count();
-        dd($Adminnotycount);
-        return view('/layout/app')->with(['Admincount' => $Adminnotycount]);
+        
+        
+        $count = Notify::where('status', '1')->where('sendto', 'Admin')->count();
+
+        return json_encode([
+            'result' => 'success',
+            'count' => $count
+        ]);
+    }
+
+    public function getClientNotyCount()
+    {
+        $name = Auth::user()->name;
+
+        $count = Notify::where('status', '1')->where('sendto', $name)->count();
+
+        return json_encode([
+            'result' => 'success',
+            'count' => $count
+        ]);
     }
 
     public function deleteNotify($id = 0, Request $request)

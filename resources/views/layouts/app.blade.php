@@ -74,7 +74,7 @@
                             <a class="nav-link" href="/evaluation">Evaluation</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="/notify">Notification</a>
+                            <a class="nav-link" href="/notify" id="count">Notification</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="/about">About</a>
@@ -95,7 +95,7 @@
                             <a class="nav-link" href="/evaluation">Evaluation</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="/notify">Notification</a>
+                            <a class="nav-link" href="/notify" id="count2">Notification</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="/about">About</a>
@@ -187,29 +187,63 @@
 
     <!-- Modal -->
     <!-- Modal -->
-<div class="modal fade" id="changepassModal" tabindex="-1" role="dialog" aria-labelledby="passModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <form id="form-add-employee" method="POST">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="passModalLabel">Change Password</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <div class="modal fade" id="changepassModal" tabindex="-1" role="dialog" aria-labelledby="passModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <form id="form-add-employee" method="POST">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="passModalLabel">Change Password</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <button id="btn-change-pass" type="submit" class="btn btn-primary">Save</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    
-                </div>
-                <div class="modal-footer">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <button id="btn-change-pass" type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 
 
+    <script>
+        $(document).ready(function() {
+        setInterval("getAdminNotyCount()",2000);
+        setInterval("getClientNotyCount()",2000);
+    });
+    
+
+    function getAdminNotyCount() { 
+     $.ajax({
+     type: "GET",
+     url: "/count",
+     success: function(response){
+         json_object = JSON.parse(response)
+         var count = json_object.count
+         console.log(count);
+         $('#count').text('Notification(' + count +')');
+     }
+     });
+     }
+
+     function getClientNotyCount() { 
+     $.ajax({
+     type: "GET",
+     url: "/count/client",
+     success: function(response){
+         json_object = JSON.parse(response)
+         var count = json_object.count
+         console.log(count);
+         $('#count2').text('Notification(' + count +')');
+     }
+     });
+     }
+
+    </script>
 
     <!--Bootstrap 4 DataTable jquery -->
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->

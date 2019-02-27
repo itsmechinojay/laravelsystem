@@ -5,8 +5,7 @@
     <div class="card">
         <div class="card-header">
             Employee
-        </div>
-        <div class="card-body">
+        </div><div class="card-body">
             <div class="table-responsive ">
                 <table id="employeelist" class="table table-sm table-hover" cellspacing="0" style="width:100%">
                     <thead>
