@@ -25,5 +25,5 @@
     </div>
 </div>
 
-<script src="{{ asset('script/notifypage.js')}}" type="text/javascript"></script>
+<script src="{{ asset('script/history.js')}}" type="text/javascript"></script>
 @endsection 

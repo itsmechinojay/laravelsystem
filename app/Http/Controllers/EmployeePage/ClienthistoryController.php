@@ -39,14 +39,16 @@ class ClienthistoryController extends Controller
 
     public function getHistory()
     {
-        $name =Auth::user()->name;
+        $email =Auth::user()->email;
 
-        $history = DB::table('clienthistory')
-            ->where('email','=',$name)
+        $historylist = DB::table('clienthistory')
+            ->where('email','=',$email)
             ->get();
         return json_encode([
             'result' => 'success',
-            'historylist' => $history
+            'history' => $historylist
         ]);
     }
+
+    
 }

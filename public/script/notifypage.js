@@ -72,7 +72,7 @@ function getAllClientNotify() {
                                 data =
                                     '<button id="btn-account-delete" type="button" onclick="deleteNotify(' +
                                     full["id"] +
-                                    ');" class="btn btn-link btn-sm" >Mark as Read</button>';
+                                    ');" class="btn btn-link btn-sm">Mark as Read</button>';
                                 return data;
                             }
                         }

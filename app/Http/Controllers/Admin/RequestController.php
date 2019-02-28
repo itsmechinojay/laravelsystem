@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Model\Client_Request;
+use App\Http\Model\Clienthistory;
 use App\Http\Model\Employee;
 use App\Http\Model\Notify;
 use Illuminate\Support\Facades\DB;
@@ -51,6 +52,7 @@ class RequestController extends Controller
 
     public function deployEmployee($employeeid, $clientname)
     {
+
         $deployEmployee = DB::table('employee')
             ->where('id', $employeeid)
             ->update(['client' => $clientname]);
@@ -62,6 +64,7 @@ class RequestController extends Controller
                 'sendto' => $clientname,
                 'status' => 1
             ]);
+
             return json_encode([
                 'result' => 'success',
                 'message' => 'Successfully Deploy'

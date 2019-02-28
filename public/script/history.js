@@ -17,7 +17,7 @@ function getHistory() {
             var msg = JSON.parse(data);
             if (msg.result == 'success') {
                 console.log(msg.historylist);
-                var table = $('#history').DataTable({
+                var table = $('#historylist').DataTable({
                     processing: true,
                     data: msg.historylist,
                     responsive: true,
@@ -26,7 +26,6 @@ function getHistory() {
                         { data: 'lastname' },
                         { data: 'firstname' },
                         { data: 'middlename' },
-                        { data: 'email' },
                         { data: 'pastclient' },
                         //     { data: 'needed'},
                     ]
