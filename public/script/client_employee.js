@@ -27,9 +27,7 @@ function getAllEmployee() {
                         {
                             'render': function (data, type, full, meta) {
                                 data =
-                                '<button id="btn-employee-view" type="button" onclick="getEmployee(' +
-                                full["id"] +
-                                ');" class="btn btn-link btn-sm" >View</button>';
+                                    '<button id="btn-request-delete" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#contractModal" class="btn btn-link btn-sm" >Make Contract</button>'
                                 return data;
                             }
                         }
@@ -47,7 +45,42 @@ function getAllEmployee() {
     });
 }
 
+
+
+function makeContract(id, contractyear) {
+    $.ajax({
+        url: 'client/contract/' + id + '/' + contractyear,
+        headers:
+        {
+            'X-CSRF-Token': $('input[name="_token"]').val()
+        },
+        type: "PUT",
+        contentType: false,
+        cache: false,
+        processData: false,
+        beforeSend: function (xhr) {
+
+        },
+        success: function (data) {
+            var msg = JSON.parse(data);
+            if (msg.result == 'success') {
+                console.log(msg);
+                getAllEmployee();
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) { // if error occured
+            console.log("Error: " + thrownError);
+        },
+        complete: function () {
+        },
+    });
+}
+
 $(document).ready(function () {
+
+    $("#btn-contract-add").click(function () {
+        makeContract(id, contractyear);
+    });
+
     getAllEmployee();
-    
 });

@@ -129,6 +129,8 @@ class EmployeeController extends Controller
                 'city' => $request['city'],
                 'contact' => $request['contact'],
                 'client' => 'Pending',
+                'contract_start' => 'Pending',
+                'contract_end' => 'Pending',
                 'status' => '1',
             ]);
 

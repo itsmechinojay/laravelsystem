@@ -29,6 +29,10 @@ class RequestController extends Controller
     public function getAllRequest()
     {
         $request = Client_Request::where('request_status', 'O')->get();
+
+
+        Client_Request::where('needed', "0")->update(['request_status' => "C"]);
+
         return json_encode([
             'result' => 'success',
             'requestlist' => $request
@@ -40,7 +44,7 @@ class RequestController extends Controller
     {
         $employee = DB::table('employee')
             ->select('id', 'lastname', 'firstname', 'middlename', 'email')
-            ->where('position','=', $position)
+            ->where('position', '=', $position)
             ->where('client', 'Pending')
             ->get();
 
@@ -50,14 +54,20 @@ class RequestController extends Controller
         ]);
     }
 
-    public function deployEmployee($employeeid, $clientname)
+    public function deployEmployee($id, $employeeid, $clientname)
     {
+
+        $upRequest = DB::table('client_request')
+            ->where('id', $id)
+            ->decrement('needed');
 
         $deployEmployee = DB::table('employee')
             ->where('id', $employeeid)
             ->update(['client' => $clientname]);
 
-        if ($deployEmployee) {
+
+        if ($deployEmployee && $upRequest) {
+
             Notify::create([
                 'sender' => Auth::user()->name,
                 'action' => 'Deployed Employee',
@@ -77,23 +87,6 @@ class RequestController extends Controller
         }
     }
 
-    public function closeRequest($id)
-    {
-        $closeRequest = DB::table('client_request')
-            ->where('id', $id)
-            ->update(['request_status' => 'C']);
-        if ($closeRequest) {
-            return json_encode([
-                'result' => 'success',
-                'message' => 'Success close request'
-            ]);
-        } else {
-            return json_encode([
-                'result' => 'failed',
-                'message' => 'Something problem'
-            ]);
-        }
-    }
 
     public function getEmployee(Employee $employee)
     {
@@ -113,13 +106,15 @@ class RequestController extends Controller
 
     public function getRequest(Request $request)
     {
+
+
         return json_encode([
             'result' => 'success',
             'request' => $request
         ]);
     }
 
-    public function Approved($id = 0, Request $request)
+    public function Approved($id = 0)
     {
         $clientname = DB::table('client_request')
             ->select('client_id')
@@ -127,7 +122,7 @@ class RequestController extends Controller
             ->get();
 
         $updateRequest = Client_Request::where('id', $id)->update(['status' => "1"]);
-       
+
         if ($updateRequest) {
             Notify::create([
                 'sender' => Auth::user()->name,
@@ -147,4 +142,3 @@ class RequestController extends Controller
         }
     }
 }
-

@@ -196,6 +196,7 @@ $.ajax({
                 html += '<option value="1">Poor</option>';
                 html += '</td>';
                 html += '</select>';
+                html += '<td>'+'<button id="btn-criteria-add" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#criteriaModal" class="btn btn-link btn-sm" >Criteria</button>'+'</td>';
                 html += '</tr>';
                 $('#evalemp').append(html);
             });            

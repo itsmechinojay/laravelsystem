@@ -119,7 +119,7 @@
                 <div class="card">
                     <div class="card-header">
                         Deployment
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="getAllRequest()">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>

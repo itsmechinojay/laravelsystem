@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Model\Client;
 use App\Http\Model\Employee;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class Client_EmployeeController extends Controller
 {
@@ -43,5 +44,27 @@ class Client_EmployeeController extends Controller
             'result' => 'success',
             'employee' => $employeelist
         ]);
+    }
+
+    public function makeContract($id, $contractyear)
+    {
+        $contractstart = Carbon\Carbon::now()->format('Y-m-d');
+        $contractend = date('Y-m-d', strtotime('+' + $contractyear + " years"));
+        
+        $updateContract = Employee::where('id', $id)
+        ->update(['contract_start' => $contractstart])
+        ->update(['contract_end' => $contractend]);
+
+        if ($updateContract) {
+            return json_encode([
+                'result' => 'success',
+                'message' => 'Successfully Updated!'
+            ]);
+        } else {
+            return json_encode([
+                'result' => 'failed',
+                'message' => 'Not success'
+            ]);
+        }
     }
 }

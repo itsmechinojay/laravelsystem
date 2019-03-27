@@ -63,7 +63,7 @@ class EvaluationController extends Controller
             if (date("m", strtotime($lastdate->created_at)) == date("m")) {
                 return json_encode([
                     'result' => 'failed',
-                    'message' => 'once a month'
+                    'message' => 'once a year'
                 ]);
             }
         }

@@ -20,6 +20,8 @@ class Employee extends Model
         'city',
         'contact',
         'client',
+        'contract_start',
+        'contract_end',
         'status',
     ];
 

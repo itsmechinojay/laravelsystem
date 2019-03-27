@@ -26,6 +26,8 @@ class CreateEmployeeTable extends Migration
             $table->string('city');
             $table->string('contact');
             $table->string('client');
+            $table->string('contract_start');
+            $table->string('contract_end');
             $table->string('status');
             $table->timestamps();
         });

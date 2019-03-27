@@ -1,4 +1,3 @@
-
 function getHistory() {
     $.ajax({
         url: '/deployment_history',

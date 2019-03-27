@@ -53,8 +53,7 @@ Route::group(['middleware' => ['admin'] && ['dev']], function () {
     Route::get('admin/show/{employee}', 'Admin\RequestController@getRequest');
     Route::get('admin/getallemployee/{position}', 'Admin\RequestController@getAllEmployee');
     Route::post('admin/request/{id}', 'Admin\RequestController@Approved')->name('request.create');
-    Route::put('admin/request/update/{employeeid}/{clientname}', 'Admin\RequestController@deployEmployee');
-    Route::put('admin/request/closerequest/{id}', 'Admin\RequestController@closeRequest');
+    Route::put('admin/request/update/{id}/{employeeid}/{clientname}', 'Admin\RequestController@deployEmployee');
     
     //Account
     Route::any('admin/account', 'Admin\AccountController@index')->name('admin.account');
@@ -81,6 +80,9 @@ Route::group(['middleware' => ['client'] && ['dev']], function () {
     Route::post('/client_request/add', 'Client_RequestController@requestClient');
     Route::get('/client_user/get_request', 'Client_RequestController@getRequest');
     
+    
+    Route::put('client/contract/{id}/{contractyear}', 'Client_EmployeeContract@makeContract');
+
     Route::get('client/request/delete', 'Client_RequestController@deleteRequest');
     Route::any('/evaluation', 'EvaluationController@index')->name('client_user');
     Route::post('/evaluation/addperiod', 'EvaluationController@addEvalPeriod');
