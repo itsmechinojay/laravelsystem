@@ -81,10 +81,11 @@ Route::group(['middleware' => ['client'] && ['dev']], function () {
     Route::get('/client_user/get_request', 'Client_RequestController@getRequest');
     
     
-    Route::put('client/contract/{id}/{contractyear}', 'Client_EmployeeContract@makeContract');
+    Route::put('client/contract/{id}/{contractyear}', 'Client_EmployeeController@makeContract');
 
     Route::get('client/request/delete', 'Client_RequestController@deleteRequest');
     Route::any('/evaluation', 'EvaluationController@index')->name('client_user');
+    Route::get('/evaluation/criteria', 'EvaluationController@getCriteria')->name('criteria');
     Route::post('/evaluation/addperiod', 'EvaluationController@addEvalPeriod');
     Route::post('/evaluation/evaluateemployee', 'EvaluationController@evaluateEmployee');
     Route::get('/evaluation/checkevaluation', 'EvaluationController@checkEvaluationDate');

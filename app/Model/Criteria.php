@@ -4,12 +4,15 @@ namespace App\Http\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class EvaluationPeriod extends Model
+class Criteria extends Model
 {
-    protected $table = 'evaluation_period';
+    //
+    protected $table = 'criteria';
+    
     protected $primaryKey = 'id';
-    protected $fillable = [
-        'emp_id'
-    ];
 
+    protected $fillable = [
+        'criteria'
+    ];
 }
+

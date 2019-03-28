@@ -37,15 +37,16 @@
                     <tr>
                         <th>#</th>
                         <th>Full Name</th>
-                        <th class="text-center">Rating</th>
-                        <th class="text-center">Criteria</th>
+                        {{--
+                        <th class="text-center">Rating</th> --}}
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody id="evalemp">
 
                 </tbody>
             </table>
-            <button id="evaluate-save" type="button" class="btn btn-primary">Save</button> @else
+             @else
             <div id="evaluation-stop">
                 <h3>The Evaluation period is every month</h3>
             </div>
@@ -58,7 +59,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="criteriaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel"></h5>
@@ -68,6 +69,18 @@
               </button>
             </div>
             <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th width="1%">#</th>
+                            <th>Criteria Name</th>
+                            <th>Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodycriteria"></tbody>
+                </table>
+                
+                {{--
                 <div class="form-group row">
                     <div class="form-group col">
                         <label>Vocational competence</label>
@@ -115,11 +128,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="modal-footer">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <button id="btn-employee-add" type="submit" class="btn btn-primary">Save</button>
+                <button id="evaluate-save" type="button" class="btn btn-primary">Save</button>
             </div>
         </div>
     </div>

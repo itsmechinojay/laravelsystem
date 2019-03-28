@@ -210,7 +210,7 @@
     </div>
 
 
-    <script>
+    {{-- <script>
         $(document).ready(function() {
         setInterval("getAdminNotyCount()",2000);
         setInterval("getClientNotyCount()",2000);
@@ -243,7 +243,7 @@
      });
      }
 
-    </script>
+    </script> --}}
 
     <!--Bootstrap 4 DataTable jquery -->
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->

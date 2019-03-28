@@ -48,14 +48,14 @@ class Client_EmployeeController extends Controller
 
     public function makeContract($id, $contractyear)
     {
-        $contractstart = Carbon\Carbon::now()->format('Y-m-d');
-        $contractend = date('Y-m-d', strtotime('+' + $contractyear + " years"));
         
-        $updateContract = Employee::where('id', $id)
-        ->update(['contract_start' => $contractstart])
-        ->update(['contract_end' => $contractend]);
+        $update = DB::update("UPDATE employee set contract_start = CURDATE(), contract_end = DATE_ADD(CURDATE(), INTERVAL ? YEAR) where id = ?" , [$contractyear, $id]);
+        
+        // $updateContract = Employee::where('id', $id)
+        // ->update(['contract_start' => $contractstart])
+        // ->update(['contract_end' => $contractend]);
 
-        if ($updateContract) {
+        if ($update) {
             return json_encode([
                 'result' => 'success',
                 'message' => 'Successfully Updated!'

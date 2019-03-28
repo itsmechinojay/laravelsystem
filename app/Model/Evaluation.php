@@ -11,6 +11,7 @@ class Evaluation extends Model
     protected $fillable = [
         'evalperiod_id',
         'emp_id',
+        'criteria_id',
         'rating'
     ];
 

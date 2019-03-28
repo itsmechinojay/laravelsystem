@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Model\EvaluationPeriod;
 use App\Http\Model\Evaluation;
+use App\Http\Model\Criteria;
 use Illuminate\Support\Facades\Auth;
 use function GuzzleHttp\json_encode;
 
@@ -17,7 +18,7 @@ class EvaluationController extends Controller
     {
         $lastdate = DB::table('evaluation_period')
             ->select('created_at')
-            ->where('client_id', Auth::user()->id)
+            ->where('emp_id', Auth::user()->id)
             ->latest('id')
             ->first();
         $evaluation = true;
@@ -34,16 +35,14 @@ class EvaluationController extends Controller
     public function addEvalPeriod(Request $request)
     {
         $addEvalPeriod = EvaluationPeriod::create([
-            'client_id' => Auth::user()->id
+            'emp_id' => $request["emp_id"]
         ]);
 
         if ($addEvalPeriod) {
             $evalperiod_id = DB::table('evaluation_period')
                 ->select('id')
-                ->where('client_id', Auth::user()->id)
-                ->latest('id')
+                ->where('emp_id', $request["emp_id"])
                 ->first();
-
             return json_encode([
                 'result' => 'success',
                 'evalperiod_id' => $evalperiod_id->id
@@ -55,7 +54,7 @@ class EvaluationController extends Controller
     {
         $lastdate = DB::table('evaluation_period')
             ->select('created_at')
-            ->where('client_id', Auth::user()->id)
+            ->where('emp_id', Auth::user()->id)
             ->latest('id')
             ->first();
         $evaluation = false;
@@ -73,11 +72,20 @@ class EvaluationController extends Controller
         ]);
     }
 
+    public function getCriteria()
+    {
+        $criterias = Criteria::all();
+        return json_encode([
+            'criteria' => $criterias
+        ]);
+    }
+
     public function evaluateEmployee(Request $request)
     {
         $evaluate = Evaluation::create([
             'evalperiod_id' => $request['evalperiod_id'],
             'emp_id' => $request['emp_id'],
+            'criteria_id' => $request['criteria_id'],
             'rating' => $request['rating']
         ]);
         if ($evaluate) {

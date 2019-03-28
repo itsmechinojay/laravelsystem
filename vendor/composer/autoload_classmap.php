@@ -42,6 +42,7 @@ return array(
     'App\\Http\\Model\\Client' => $baseDir . '/app/Model/Client.php',
     'App\\Http\\Model\\Client_Request' => $baseDir . '/app/Model/Client_Request.php',
     'App\\Http\\Model\\Clienthistory' => $baseDir . '/app/Model/Clienthistory.php',
+    'App\\Http\\Model\\Criteria' => $baseDir . '/app/Model/Criteria.php',
     'App\\Http\\Model\\Employee' => $baseDir . '/app/Model/Employee.php',
     'App\\Http\\Model\\EmployeeRequest' => $baseDir . '/app/Model/EmployeeRequest.php',
     'App\\Http\\Model\\Evaluation' => $baseDir . '/app/Model/Evaluation.php',

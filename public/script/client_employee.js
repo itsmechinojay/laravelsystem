@@ -27,7 +27,7 @@ function getAllEmployee() {
                         {
                             'render': function (data, type, full, meta) {
                                 data =
-                                    '<button id="btn-request-delete" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#contractModal" class="btn btn-link btn-sm" >Make Contract</button>'
+                                    '<button id="btn-request-delete" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#contractModal" class="btn btn-link btn-sm" onclick="addEmpId(' + full["id"] + ');">Make Contract</button>'
                                 return data;
                             }
                         }
@@ -48,6 +48,8 @@ function getAllEmployee() {
 
 
 function makeContract(id, contractyear) {
+    console.log(id);
+    console.log(contractyear);
     $.ajax({
         url: 'client/contract/' + id + '/' + contractyear,
         headers:
@@ -55,9 +57,6 @@ function makeContract(id, contractyear) {
             'X-CSRF-Token': $('input[name="_token"]').val()
         },
         type: "PUT",
-        contentType: false,
-        cache: false,
-        processData: false,
         beforeSend: function (xhr) {
 
         },
@@ -75,11 +74,19 @@ function makeContract(id, contractyear) {
         },
     });
 }
+var emp_id = 0;
+function addEmpId(emp_id) {
+    this.emp_id = emp_id;
+}
+
+function getEmpId() {
+    return this.emp_id;
+}
 
 $(document).ready(function () {
 
     $("#btn-contract-add").click(function () {
-        makeContract(id, contractyear);
+        makeContract(getEmpId(), $("#contractyear").val());
     });
 
     getAllEmployee();

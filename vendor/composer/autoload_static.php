@@ -467,6 +467,7 @@ class ComposerStaticInit21e5ca7ef7cbae8cc7f5316b912f0fc4
         'App\\Http\\Model\\Client' => __DIR__ . '/../..' . '/app/Model/Client.php',
         'App\\Http\\Model\\Client_Request' => __DIR__ . '/../..' . '/app/Model/Client_Request.php',
         'App\\Http\\Model\\Clienthistory' => __DIR__ . '/../..' . '/app/Model/Clienthistory.php',
+        'App\\Http\\Model\\Criteria' => __DIR__ . '/../..' . '/app/Model/Criteria.php',
         'App\\Http\\Model\\Employee' => __DIR__ . '/../..' . '/app/Model/Employee.php',
         'App\\Http\\Model\\EmployeeRequest' => __DIR__ . '/../..' . '/app/Model/EmployeeRequest.php',
         'App\\Http\\Model\\Evaluation' => __DIR__ . '/../..' . '/app/Model/Evaluation.php',
